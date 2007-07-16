@@ -2,7 +2,7 @@
 //  installed-framework-target.xcconfig
 //  Settings for an installed framework target
 //
-//  Created by Wincent Colaiuta on 18/02/2006.
+//  Created by Wincent Colaiuta on 18 February 2006.
 //  Copyright 2006 Wincent Colaiuta. 
 
 #include "framework-target.xcconfig"

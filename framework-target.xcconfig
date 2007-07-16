@@ -2,7 +2,7 @@
 //  framework-target.xcconfig
 //  Settings for all framework targets (embedded and installed)
 //
-//  Created by Wincent Colaiuta on 18/02/2006.
+//  Created by Wincent Colaiuta on 18 February 2006.
 //  Copyright 2006 Wincent Colaiuta. 
 
 MACH_O_TYPE                 = mh_dylib

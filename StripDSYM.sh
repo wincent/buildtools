@@ -3,7 +3,7 @@
 # StripDSYM.sh
 # buildtools
 #
-# Created by Wincent Colaiuta on 06/12/04.
+# Created by Wincent Colaiuta on 06 December 2004.
 #
 # Copyright 2004-2006 Wincent Colaiuta.
 # This program is distributed in the hope that it will be useful, but WITHOUT
