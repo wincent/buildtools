@@ -1,0 +1,22 @@
+//
+//  installed-framework-target.xcconfig
+//  Settings for an installed framework target
+//
+//  Created by Wincent Colaiuta on 18/02/2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: installed-framework-target.xcconfig 35 2006-09-06 10:39:03Z wincent $
+
+#include "framework-target.xcconfig"
+
+HEADER_SEARCH_PATHS   = /Library/Frameworks
+
+// build at INSTALL_PATH
+DEPLOYMENT_LOCATION   = YES
+INSTALL_PATH          = /Library/Frameworks
+DSTROOT               = /
+
+// build for native arch only
+ARCHS                 = $(NATIVE_ARCH)
+SDKROOT               =
+SDKROOT_i386          = 
+SDKROOT_ppc           = 

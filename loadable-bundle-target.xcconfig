@@ -1,0 +1,11 @@
+//
+//  loadable-bundle-target.xcconfig
+//  Settings for a preference pane target
+//
+//  Created by Wincent Colaiuta on 18 February 2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: loadable-bundle-target.xcconfig 37 2006-09-12 12:16:44Z wincent $
+
+MACH_O_TYPE                     = mh_bundle
+WRAPPER_EXTENSION               = bundle
+

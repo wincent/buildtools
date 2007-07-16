@@ -1,0 +1,11 @@
+//
+//  pref-pane-target.xcconfig
+//  Settings for a preference pane target
+//
+//  Created by Wincent Colaiuta on 18/02/2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: pref-pane-target.xcconfig 5 2006-03-10 02:26:20Z wincent $
+
+#include "loadable-bundle-target.xcconfig"
+
+WRAPPER_EXTENSION               = prefPane

@@ -1,0 +1,12 @@
+//
+//  framework-target.xcconfig
+//  Settings for all framework targets (embedded and installed)
+//
+//  Created by Wincent Colaiuta on 18/02/2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: framework-target.xcconfig 5 2006-03-10 02:26:20Z wincent $
+
+MACH_O_TYPE                 = mh_dylib
+WRAPPER_EXTENSION           = framework
+
+PUBLIC_HEADERS_FOLDER_PATH  = $(FULL_PRODUCT_NAME)/Versions/$(FRAMEWORK_VERSION)/Headers/

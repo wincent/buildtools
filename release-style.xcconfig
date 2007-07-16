@@ -1,0 +1,48 @@
+//
+//  release-style.xcconfig
+//  Settings for project-level "Release" build style
+//
+//  Created by Wincent Colaiuta on 18 February 2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: release-style.xcconfig 76 2007-04-27 22:55:10Z wincent $
+
+#include "base-style.xcconfig"
+
+// produce Universal Binaries by default
+ARCHS                           = ppc i386
+
+// Dead Code Stripping needs full symbols
+DEAD_CODE_STRIPPING             = YES
+GCC_GENERATE_DEBUGGING_SYMBOLS  = YES
+GCC_DEBUGGING_SYMBOLS           = full
+
+// necessary for stripping (will only actually install if DSTROOT is set to /)
+DEPLOYMENT_POSTPROCESSING       = YES
+SKIP_INSTALL                    = NO
+
+// for greater control, perform stripping using a script rather than letting the linker do it
+STRIP_INSTALLED_PRODUCT         = NO
+SEPARATE_STRIP                  = NO
+
+// may be redundant, but for completeness
+STRIP_STYLE                     = all
+
+// note that for some bundle targets, combining dead code stripping with normal
+// symbol stripping results in huge executables; in those cases you must use
+// only one or the other
+
+// symbols are hidden by default unless explicitly marked otherwise
+GCC_SYMBOLS_PRIVATE_EXTERN      = YES
+
+// inlined functions are also hidden (strictly speaking, GCC_SYMBOLS_PRIVATE_EXTERN implies this setting also)
+GCC_INLINES_ARE_PRIVATE_EXTERN  = YES
+
+// setting this to YES leads to faster link times but means that atos can't extract line numbers
+// see xcode-users thread, "DWARF format and stripping": http://lists.apple.com/archives/Xcode-users/2006/May/msg00855.html
+ONLY_LINK_ESSENTIAL_SYMBOLS     = NO
+
+KEEP_PRIVATE_EXTERNS            = NO
+
+// NDEBUG turns off C assert
+// NSBlockAssertions turns off NSAssert and friends
+//GCC_PREPROCESSOR_DEFINITIONS    = NDEBUG NSBlockAssertions

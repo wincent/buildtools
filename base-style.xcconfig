@@ -1,0 +1,95 @@
+//
+//  base-style.xcconfig
+//  Settings common to all build styles
+//
+//  Created by Wincent Colaiuta on 18 February 2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: base-style.xcconfig 71 2007-04-27 22:54:26Z wincent $
+
+SYMROOT                             = $(SRCROOT)/../../build
+OBJROOT                             = $(SRCROOT)/../../build-intermediates
+SHARED_PROJECTS_DIR                 = $(SYMROOT)/..
+BUILDTOOLS_DIR                      = $(SHARED_PROJECTS_DIR)/buildtools
+
+// for the Xcode UI define SDKROOT (not just the arch-specific variants)
+MACOSX_DEPLOYMENT_TARGET            = 10.5
+MACOSX_DEPLOYMENT_TARGET_i386       = 10.5
+MACOSX_DEPLOYMENT_TARGET_ppc        = 10.5
+
+SDKROOT                             = /Developer/SDKs/MacOSX10.5.sdk
+SDKROOT_i386                        = /Developer/SDKs/MacOSX10.5.sdk
+SDKROOT_ppc                         = /Developer/SDKs/MacOSX10.5.sdk
+
+GCC_C_LANGUAGE_STANDARD             = gnu99
+GCC_ENABLE_OBJC_EXCEPTIONS          = YES
+GCC_ENABLE_CPP_EXCEPTIONS           = NO
+GCC_ENABLE_CPP_RTTI                 = NO
+GCC_PRECOMPILE_PREFIX_HEADER        = YES
+
+WARNING_CFLAGS                      = $(WARNING_CFLAGS_$(CURRENT_ARCH))
+WARNING_CFLAGS_ppc                  = -Wall -Wextra -Wno-unused-parameter
+
+// i386 compiler is more sensitive and can issue spurious "might be clobbered" if we pass "-Wextra" here
+WARNING_CFLAGS_i386                 = -Wall -Wno-unused-parameter
+
+INFOPLIST_PREPROCESS                = YES
+INFOPLIST_PREPROCESSOR_DEFINITIONS  = WO_PREPROCESSING_FOR_INFO_PLIST
+
+// prevent URLs (which contain "//") in property lists getting mangled when the preprocessor strips comments
+INFOPLIST_OTHER_PREPROCESSOR_FLAGS  = -traditional
+
+// BUG: this can cause linker errors on first build: example
+//
+// Ld /Users/wincent/trabajo/build-intermediates/WOTest.build/Release/WOTestRunner.build/Objects-normal/ppc/WOTestRunner normal ppc
+//    cd /Users/wincent/trabajo/WOTest/svn-files
+//    /usr/bin/gcc-4.0 -o /Users/wincent/trabajo/build-intermediates/WOTest.build/Release/WOTestRunner.build/Objects-normal/ppc/WOTestRunner -L/Users/wincent/trabajo/build/Release -F/Users/wincent/trabajo/build/Release -filelist /Users/wincent/trabajo/build-intermediates/WOTest.build/Release/WOTestRunner.build/Objects-normal/ppc/WOTestRunner.LinkFileList -framework Foundation -arch ppc -prebind -mmacosx-version-min=10.3 -Wl,-dead_strip -isysroot /Developer/SDKs/MacOSX10.3.9.sdk
+///usr/bin/ld: warning -L: directory name (/Users/wincent/trabajo/build/Release) does not exist
+///usr/bin/ld: warning -F: directory name (/Users/wincent/trabajo/build/Release) does not exist
+//
+// what should the workaround be? move the setting lower down? eg. to cocoa app, framework, test bundle? override it in the problem target? try dropping it down to debug-style and release-style files?
+//
+HEADER_SEARCH_PATHS                 = "$(TARGET_BUILD_DIR)" "$(SOURCE_ROOT)"
+
+// Apple recommends that this be switched off; the default (YES) is only for backwards compatibility
+ALWAYS_SEARCH_USER_PATHS            = NO
+
+// prevents custom icons from getting stripped as items are being copied to the bundle
+COPYING_PRESERVES_HFS_DATA          = YES
+
+DSTROOT                             = $(TARGET_BUILD_DIR)/DSTROOT
+
+// for greater control, perform stripping using a script rather than letting the linker do it
+COPY_PHASE_STRIP                    = NO
+
+// Apple's Scott Tooker in a post to the Xcode Users mailing list says:
+// "Currently, the general recommendation is to always turn off prebinding if you are targetting 10.3.x or later"
+// http://lists.apple.com/archives/xcode-users/2006/May/msg00363.html
+// At the time of writing (Xcode 2.2.1), prebinding still defaults to YES (copied from the build settings window):
+// "This setting determines if prebinding will be attempted by adding -prebind to linker flags, and defaults to being active for all product types except static libraries."
+PREBINDING                          = NO
+
+// symbol separation is only compatible with the STABS debug information format, not DWARF
+GCC_ENABLE_SYMBOL_SEPARATION        = NO
+
+// don't use dwarf-with-dsym: invoke dsymutil manually before stripping rather than letting Xcode do it (tries after stripping and fails)
+DEBUG_INFORMATION_FORMAT            = dwarf
+
+// new setting for Leopard-only builds (previously buildtools was used as far back as Panther)
+GCC_FAST_OBJC_DISPATCH              = YES
+
+// other Leopard-only settings
+GCC_ENABLE_OBJC_GC                  = YES
+
+// default to using Cocoa/Cocoa.h as prefix header: override in specific cases (eg. Foundation tool targets)
+GCC_PREFIX_HEADER                   = $(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h
+
+// when using system headers as precomp headers can get better performance and sharing by setting this to NO
+// if using custom precomp headers may have to override this and set it to YES
+PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO
+
+// once again, this may improve build times but should probably be overriden if using a custom precomp
+GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES
+
+// without this Xcode may try to compile the prefix header twice in projects which have C source files (once for C, once for Objective-C)
+// clearly that's not a good idea because the C-version will choke on the Objective-C syntax in the Cocoa headers
+GCC_PFE_FILE_C_DIALECTS = objective-c objective-c++

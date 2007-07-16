@@ -1,0 +1,9 @@
+//
+//  foundation-tool-target.xcconfig
+//  Settings for a foundation tool target
+//
+//  Created by Wincent Colaiuta on 18 February 2006.
+//  Copyright 2006 Wincent Colaiuta. 
+//  $Id: foundation-tool-target.xcconfig 56 2007-03-26 11:01:49Z wincent $
+
+GCC_PREFIX_HEADER               = $(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h

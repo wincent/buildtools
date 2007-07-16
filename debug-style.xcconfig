@@ -1,0 +1,27 @@
+//
+//  debug-style.xcconfig
+//  Settings for project-level "Debug" build style
+//
+//  Created by Wincent Colaiuta on 18 February 2006.
+//  Copyright 2006-2007 Wincent Colaiuta. 
+//  $Id: debug-style.xcconfig 77 2007-04-27 22:55:19Z wincent $
+
+#include "base-style.xcconfig"
+
+// debug builds are always native builds, never universal
+ARCHS                                             = $(NATIVE_ARCH)
+                                                      
+ZERO_LINK                                         = YES
+DEAD_CODE_STRIPPING                               = NO
+GCC_GENERATE_DEBUGGING_SYMBOLS                    = YES
+GCC_DEBUGGING_SYMBOLS                             = full
+GCC_OPTIMIZATION_LEVEL                            = 0
+GCC_ENABLE_FIX_AND_CONTINUE                       = YES
+
+// allows conditional compilation with "#ifdef WO_DEBUG"
+// to maximize precompiled prefix header compilation sharing
+// we don't set this using GCC_PREPROCESSOR_DEFINITIONS
+// see: http://chanson.livejournal.com/168717.html
+GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = WO_DEBUG
+
+DEPLOYMENT_POSTPROCESSING                         = NO
