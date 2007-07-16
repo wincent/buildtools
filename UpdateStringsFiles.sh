@@ -37,7 +37,7 @@ printusage()
   builtin echo "Usage:   $0 unlocalized-resources-folder [development-language]"
   builtin echo "Where:   \"unlocalized-resources-folder\" contains your source and .lproj folders"
   builtin echo "         \"development-language\", if not specified, defaults to \"en\""
-  builtin echo "Example: $0 ~/Project/svn-files"
+  builtin echo "Example: $0 ~/Project/src"
   builtin echo "Note:    By design this script is not recursive"
 }
 

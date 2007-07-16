@@ -57,20 +57,16 @@ buildtools
 
 Project folders also sit at the topmost level. Most Wincent products use the following layout for project folders:
 
-Project/svn-files
-Project/non-svn-files
+Project/src
+Project/extra
 
-Files checked out from the Subversion repository (generally all those necessary to build the project) are stored in the svn-files subdirectory. All other ancillary materials (generally nothing necessary to build the project), if any, are stored in the non-svn-files subdirectory.
+Files checked out from the repository (generally all those necessary to build the project) are stored in the "src" subdirectory. All other ancillary materials (generally nothing necessary to build the project), if any, are stored in the "extra" subdirectory.
 
-This layout ensures that all projects have the same relative paths to the buildtools, build and build-intermediates directories; that is, from the svn-files directory of each project the relative paths are:
+This layout ensures that all projects have the same relative paths to the buildtools, build and build-intermediates directories; that is, from the "src" directory of each project the relative paths are:
 
 ../../buildtools
 ../../build
 ../../build-intermediates
-
-Note that the exact name of the svn-files subdirectory is irrelevant; its position within the hierarchy is what counts. It could just as well be named "trunk" or you could have peers like "stable" and "development" at the same level (corresponding to different branches within your Subversion repository). Because the project file paths are relative, however, it may be necessary to set up symbolic links like this:
-
-ln -s trunk svn-files
 
 In local development I store all of these top level files in the following location ("trabajo" is Spanish for "work"):
 

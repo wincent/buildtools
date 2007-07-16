@@ -52,7 +52,7 @@ INFOPLIST_OTHER_PREPROCESSOR_FLAGS  = -traditional
 // BUG: this can cause linker errors on first build: example
 //
 // Ld /Users/wincent/trabajo/build-intermediates/WOTest.build/Release/WOTestRunner.build/Objects-normal/ppc/WOTestRunner normal ppc
-//    cd /Users/wincent/trabajo/WOTest/svn-files
+//    cd /Users/wincent/trabajo/WOTest/src
 //    /usr/bin/gcc-4.0 -o /Users/wincent/trabajo/build-intermediates/WOTest.build/Release/WOTestRunner.build/Objects-normal/ppc/WOTestRunner -L/Users/wincent/trabajo/build/Release -F/Users/wincent/trabajo/build/Release -filelist /Users/wincent/trabajo/build-intermediates/WOTest.build/Release/WOTestRunner.build/Objects-normal/ppc/WOTestRunner.LinkFileList -framework Foundation -arch ppc -prebind -mmacosx-version-min=10.3 -Wl,-dead_strip -isysroot /Developer/SDKs/MacOSX10.3.9.sdk
 ///usr/bin/ld: warning -L: directory name (/Users/wincent/trabajo/build/Release) does not exist
 ///usr/bin/ld: warning -F: directory name (/Users/wincent/trabajo/build/Release) does not exist
