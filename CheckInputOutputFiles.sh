@@ -5,7 +5,7 @@
 #
 # Created by Wincent Colaiuta on 06 December 2004.
 #
-# Copyright 2004-2006 Wincent Colaiuta.
+# Copyright 2004-2007 Wincent Colaiuta.
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
