@@ -10,10 +10,8 @@ I maintain these tools as a separate package for two reasons: firstly, because t
 Some of the included tools are:
 
 * CheckInputOutputFiles.sh: workaround for Xcode bug in which Input/Output file checking in shell script build phases does not behave as documented
-* ClearSubversionObstruction.sh: shortcut for fixing Subversion problem, "versioned item obstructed by some item of a different kind"
 * InstallFramework.sh: installs a framework in a shared location rather than embedding it
 * InstallIBPalette.sh: installs an Interface Builder palette
-* PrepareHelp.sh: preprocess PHP help files and indexes them for in-application help
 * PreprocessInfoPlistStrings.sh: for automated preprocessing of information property list strings files
 * RunDoxygen.sh: a wrapper for Doxygen
 * SetCustomFolderIcon.sh: for setting custom icons on folders
