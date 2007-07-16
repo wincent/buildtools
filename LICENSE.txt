@@ -1,7 +1,5 @@
 $Id: LICENSE.txt 33 2006-09-06 10:37:41Z wincent $
 
-Wincent Strings Utility is copyright 2005-2006 Wincent Colaiuta. It is based on software developed by Omni Development, copyright 2002 Omni Development, Inc. This derivative work is made available according to the terms of the GNU General Public License (see below) with the permission of Omni Development.
-
 		    GNU GENERAL PUBLIC LICENSE
 		       Version 2, June 1991
 
