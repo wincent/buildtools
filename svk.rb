@@ -9,7 +9,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: svk.rb 62 2007-03-26 11:04:26Z wincent $
 
 module SVK
   

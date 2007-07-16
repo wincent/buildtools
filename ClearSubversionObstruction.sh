@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-#  $Id: ClearSubversionObstruction.sh 4 2006-02-27 13:11:15Z wincent $
 
 # Handle case where "svn status" reports that a bundle has status "~" ("versioned item obstructed by some item of a different kind")
 

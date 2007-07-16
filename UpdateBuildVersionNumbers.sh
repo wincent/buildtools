@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-#  $Id: UpdateBuildVersionNumbers.sh 63 2007-03-26 11:04:37Z wincent $
 
 # The following macro definition is updated, if present:
 #

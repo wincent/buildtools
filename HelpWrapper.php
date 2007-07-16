@@ -12,7 +12,6 @@
   # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
   # in the accompanying file, "LICENSE.txt", for more details.
   #
-  # $Id: HelpWrapper.php 20 2006-08-06 18:51:26Z wincent $
   
   # usage:
   # HelpWrapper.php file-to-be-wrapped [global-include-file]

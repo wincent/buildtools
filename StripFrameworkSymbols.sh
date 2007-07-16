@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: StripFrameworkSymbols.sh 6 2006-03-22 15:54:25Z wincent $
 
 #
 # Defaults

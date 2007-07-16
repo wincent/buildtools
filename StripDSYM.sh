@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: StripDSYM.sh 25 2006-09-06 09:44:10Z wincent $
 
 # This is a modified version of the Strip.sh script designed to work when using dSYM files. Key points:
 # - stripping must occur only after the dSYM file has been produced

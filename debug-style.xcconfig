@@ -4,7 +4,6 @@
 //
 //  Created by Wincent Colaiuta on 18 February 2006.
 //  Copyright 2006-2007 Wincent Colaiuta. 
-//  $Id: debug-style.xcconfig 77 2007-04-27 22:55:19Z wincent $
 
 #include "base-style.xcconfig"
 

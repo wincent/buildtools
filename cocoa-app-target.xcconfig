@@ -4,7 +4,6 @@
 //
 //  Created by Wincent Colaiuta on 18 February 2006.
 //  Copyright 2006 Wincent Colaiuta. 
-//  $Id: cocoa-app-target.xcconfig 56 2007-03-26 11:01:49Z wincent $
 
 MACH_O_TYPE                     = mh_execute
 WRAPPER_EXTENSION               = app

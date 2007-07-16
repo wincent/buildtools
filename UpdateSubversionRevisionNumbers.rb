@@ -9,7 +9,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: UpdateSubversionRevisionNumbers.rb 74 2007-04-27 22:54:52Z wincent $
 
 require File.join(File.dirname(__FILE__), 'svk').to_s
 require 'pathname'

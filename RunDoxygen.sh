@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: RunDoxygen.sh 57 2007-03-26 11:03:48Z wincent $
 
 #
 # Defaults

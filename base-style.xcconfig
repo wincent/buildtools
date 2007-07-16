@@ -4,7 +4,6 @@
 //
 //  Created by Wincent Colaiuta on 18 February 2006.
 //  Copyright 2006 Wincent Colaiuta. 
-//  $Id: base-style.xcconfig 71 2007-04-27 22:54:26Z wincent $
 
 SYMROOT                             = $(SRCROOT)/../../build
 OBJROOT                             = $(SRCROOT)/../../build-intermediates

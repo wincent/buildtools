@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: SetCustomFolderIcon.sh 4 2006-02-27 13:11:15Z wincent $
 
 #
 # Defaults

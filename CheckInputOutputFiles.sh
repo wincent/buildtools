@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: CheckInputOutputFiles.sh 23 2006-08-17 00:55:50Z wincent $
 
 # A script to work around Xcode Input/Output file bugs (dependency checking broken)
 

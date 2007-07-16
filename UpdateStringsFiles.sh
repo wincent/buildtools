@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: UpdateStringsFiles.sh 79 2007-07-16 14:10:46Z wincent $
 
 #
 # Defaults

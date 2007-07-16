@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: FrameworkHeadersLink.sh 44 2006-10-26 18:21:21Z wincent $
 
 . "${BUILDTOOLS_DIR}/Common.sh"
 

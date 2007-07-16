@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: PrepareHelp.sh 39 2006-10-11 13:23:47Z wincent $
 
 . "${BUILDTOOLS_DIR}/Common.sh"
 

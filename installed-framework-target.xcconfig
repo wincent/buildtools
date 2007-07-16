@@ -4,7 +4,6 @@
 //
 //  Created by Wincent Colaiuta on 18/02/2006.
 //  Copyright 2006 Wincent Colaiuta. 
-//  $Id: installed-framework-target.xcconfig 35 2006-09-06 10:39:03Z wincent $
 
 #include "framework-target.xcconfig"
 

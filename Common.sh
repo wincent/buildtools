@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: Common.sh 75 2007-04-27 22:55:01Z wincent $
 
 #
 # Functions

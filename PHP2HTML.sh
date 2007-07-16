@@ -11,7 +11,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # in the accompanying file, "LICENSE.txt", for more details.
 #
-# $Id: PHP2HTML.sh 21 2006-08-09 21:52:10Z wincent $
 
 . "${BUILDTOOLS_DIR}/Common.sh"
 
