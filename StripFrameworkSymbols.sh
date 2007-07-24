@@ -47,7 +47,7 @@ elif [ $# -gt 1 ]; then
   exit 1
 fi
 
-if [ "${FRAMEWORK_VERSION}" = "" ]; then
+if [ -z "${FRAMEWORK_VERSION}" ]; then
   builtin echo "FRAMEWORK_VERSION not set: using default value A"
   FRAMEWORK_VERSION="A"
 fi

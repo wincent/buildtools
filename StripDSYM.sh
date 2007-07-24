@@ -41,7 +41,7 @@ BINARY="${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}"
 BASENAME=$(/usr/bin/basename "${BINARY}")
 
 builtin echo "Running dsymutil on unstripped binary"
-if ! $(/usr/bin/dsymutil -o "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}" "${BINARY}"); then
+if ! /usr/bin/dsymutil -o "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}" "${BINARY}"; then
   builtin echo -e "\nwarning: dsymutil complained; try doing a 'Clean' before doing a release build"
 fi
 
