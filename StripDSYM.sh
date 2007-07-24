@@ -40,9 +40,10 @@ fi
 BINARY="${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}"
 BASENAME=$(/usr/bin/basename "${BINARY}")
 
+# dsymutil will issue a non-fatal warning if binary has already been stripped
 builtin echo "Running dsymutil on unstripped binary"
-if ! /usr/bin/dsymutil -o "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}" "${BINARY}"; then
-  builtin echo -e "\nwarning: dsymutil complained; try doing a 'Clean' before doing a release build"
+if [[ $(/usr/bin/dsymutil -o "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}" "${BINARY}") =~ "warning" ]]; then
+  builtin echo "warning: dsymutil complained (binary already stripped?); try doing a 'Clean' before doing a release build"
 fi
 
 builtin echo "Stripping binary"
