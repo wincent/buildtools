@@ -45,24 +45,8 @@ if ! $(/usr/bin/dsymutil -o "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}" 
   builtin echo -e "\nwarning: dsymutil complained; try doing a 'Clean' before doing a release build"
 fi
 
-builtin echo "Extracting architecures into thin binaries"
-/usr/bin/lipo "${BINARY}" -thin ppc -output "${BINARY}_ppc_unstripped"
-/usr/bin/lipo "${BINARY}" -thin i386 -output "${BINARY}_i386_unstripped"
-
-builtin echo "Stripping thin binaries"
-/usr/bin/strip -S -x -r -o "${BINARY}_ppc_stripped" -r "${BINARY}_ppc_unstripped"
-/usr/bin/strip -S -x -r -o "${BINARY}_i386_stripped" -r "${BINARY}_i386_unstripped"
-
-builtin echo "Making new (stripped) Universal Binary from stripped thin binaries"
-/usr/bin/lipo -arch ppc "${BINARY}_ppc_stripped" -arch i386 "${BINARY}_i386_stripped" -create -output "${BINARY}"
-
-builtin echo "Disposing of stripped thin binaries"
-/bin/rm -f "${BINARY}_ppc_stripped"
-/bin/rm -f "${BINARY}_i386_stripped"
-
-builtin echo "Disposing of unstripped thin binaries"
-/bin/rm -f "${BINARY}_ppc_unstripped"
-/bin/rm -f "${BINARY}_i386_unstripped"
+builtin echo "Stripping binary"
+strip -S -x -r "${BINARY}"
 
 builtin echo "$0: Done"
 exit 0
