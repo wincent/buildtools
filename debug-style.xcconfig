@@ -21,8 +21,10 @@
 
 // debug builds are always native builds, never universal
 ARCHS                                             = $(NATIVE_ARCH)
-                                                      
-ZERO_LINK                                         = YES
+
+// Zero Link has been removed in Xcode 3.0                                                      
+ZERO_LINK                                         = NO
+
 DEAD_CODE_STRIPPING                               = NO
 GCC_GENERATE_DEBUGGING_SYMBOLS                    = YES
 GCC_DEBUGGING_SYMBOLS                             = full
