@@ -21,7 +21,7 @@ Some of the included tools are:
 * UpdateBuildVersionNumbers.sh: for automatic updates of build number information in a header file
 * UpdateStringsFiles.sh: a wrapper for genstrings(1) and Wincent Strings Utility (see below)
 
-There is one non-standard executable that some buildtools scripts depend on (they expect to find it in the PATH), "wincent-strings-util". Wincent Strings Utility is a separate project, also licensed under the GPL. More information can be obtained from the project website: http://strings.wincent.com/.
+There are two non-standard executables that some buildtools scripts depend on (they expect to find them in the PATH), "wincent-strings-util" and "wincent-icon-util". The former, Wincent Strings Utility, is a separate project, also licensed under the GPL. More information can be obtained from the project website: http://strings.wincent.com/. The latter, Wincent Icon Utility, is also a separate project licensed under the GPL but there is no project website for it at the moment.
 
 
 DONATIONS
