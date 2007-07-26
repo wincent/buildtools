@@ -58,12 +58,8 @@ if [ ! -d "${FOLDER}" ]; then
   exit 1
 fi
 
-# see: http://cocoadev.com/index.pl?HowToSetACustomIconWithRez
-builtin echo "Preparing icon from ${ICON}"
-builtin echo "read 'icns' (-16455) \"${ICON}\";" | /Developer/Tools/Rez -o `/usr/bin/printf "${FOLDER}/Icon\r"` 
-
-builtin echo "Setting custom icon attribute on ${FOLDER}"
-/Developer/Tools/SetFile -a C "${FOLDER}"
+builtin echo "Applying custom icon ${ICON} to folder ${FOLDER}"
+wincent-icon-util -icon "${ICON}" -folder "${FOLDER}"
 
 builtin echo "$0: Done"
 exit 0
