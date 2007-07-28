@@ -58,7 +58,7 @@ fi
 cd "${SOURCE_ROOT}"
 builtin echo "Running Doxygen:"
 "${DOXYGEN}" "${DOXYFILE}"
-builtin echo "RunDoxygen.sh: Done"
+builtin echo "$0: Done"
 cd -
 
 exit 0
