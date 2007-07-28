@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Functions
 #
@@ -51,6 +53,10 @@ fi
 if [ $# -gt 0 ]; then
   TARGET_PATH="${TARGET_BUILD_DIR}/$1"
 else
+  if [ -z "${PRODUCT_NAME}" ]; then
+    err "PRODUCT_NAME empty and no explicit output-package-name supplied"
+    exit 1
+  fi
   TARGET_PATH="${TARGET_BUILD_DIR}/${PRODUCT_NAME}.pkg"
 fi
 
