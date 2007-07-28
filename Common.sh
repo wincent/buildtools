@@ -23,11 +23,19 @@
 # Functions
 #
 
+# Xcode picks up lines echoed with this function and displays them as notes in the Build Results window.
+note()
+{
+  builtin echo ":: note: $1"
+}
+
+# Xcode picks up lines echoed with this function and displays them as warnings in the Build Results window.
 warn()
 {
   builtin echo ":: warning: $1"
 }
 
+# Xcode picks up lines echoed with this function and displays them as errors in the Build Results window.
 err()
 {
   builtin echo ":: error: $1"
