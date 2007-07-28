@@ -25,7 +25,8 @@
 
 printusage()
 {
-  builtin echo "Usage: $0 output-package-name [package-maker-document]"
+  builtin echo "Usage: $0 [output-package-name [package-maker-document]]"
+  builtin echo 'If "output-package-name" is omitted "${PRODUCT_NAME}.pkg" is assumed'
   builtin echo 'If "package-maker-document" is omitted "installation-package.pmdoc" is assumed'
 }
 
@@ -36,15 +37,22 @@ printusage()
 set -e
 
 # process arguments
-if [ $# -eq 2 ]; then
-  PKG_DOC="$2"
-elif [ $# -gt 2 -o $# -lt 1 ]; then
+if [ $# -gt 2 ]; then
   printusage
   exit 1
 fi
-PKG_NAME="$1"
-PKG_DOC="${SOURCE_ROOT}/installation-package.pmdoc"
-TARGET_PATH="${TARGET_BUILD_DIR}/${PKG_NAME}"
+
+if [ $# -gt 1 ]; then
+  PKG_DOC="$2"
+else
+  PKG_DOC="${SOURCE_ROOT}/installation-package.pmdoc"
+fi
+
+if [ $# -gt 0 ]; then
+  TARGET_PATH="${TARGET_BUILD_DIR}/$1"
+else
+  TARGET_PATH="${TARGET_BUILD_DIR}/${PRODUCT_NAME}.pkg"
+fi
 
 builtin echo "Running packagemaker:"
 "${DEVELOPER_BIN_DIR}/packagemaker" --doc "${PKG_DOC}" --out "${TARGET_PATH}" --verbose
