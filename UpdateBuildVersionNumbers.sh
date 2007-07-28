@@ -67,7 +67,7 @@ update_copyright_years()
     fi
     
   else
-    builtin echo "Exiting due to error during copyright update"
+    err "non-zero exit status during copyright update"
     exit 1
   fi
 }

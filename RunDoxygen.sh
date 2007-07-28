@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Defaults
 #
@@ -51,7 +53,7 @@ fi
 
 # issue error message if Doxygen not installed
 if [ ! -f "${DOXYGEN}" ]; then
-  builtin echo "error: ${DOXYGEN} not found"
+  err "${DOXYGEN} not found"
   exit 1
 fi
 

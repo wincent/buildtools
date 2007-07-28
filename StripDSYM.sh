@@ -24,6 +24,8 @@
 #    http://lists.apple.com/archives/Xcode-users/2006/May/msg00855.html
 # - DEBUG_INFORMATION_FORMAT must be set to dwarf, not dwarf-with-dsym, otherwise Xcode will run dsymutil after stripping and fail
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Main
 #
@@ -43,7 +45,7 @@ BASENAME=$(/usr/bin/basename "${BINARY}")
 # dsymutil will issue a non-fatal warning if binary has already been stripped
 builtin echo "Running dsymutil on unstripped binary"
 if [[ $(/usr/bin/dsymutil -o "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}" "${BINARY}") =~ "warning" ]]; then
-  builtin echo "warning: dsymutil complained (binary already stripped?); try doing a 'Clean' before doing a release build"
+  warn "dsymutil complained (binary already stripped?); try doing a 'Clean' before doing a release build"
 fi
 
 builtin echo "Stripping binary"

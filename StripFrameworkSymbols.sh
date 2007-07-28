@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Defaults
 #
@@ -54,7 +56,7 @@ fi
 
 # issue error message if symbols file not found
 if [ ! -f "${SYMBOLSFILE}" ]; then
-  builtin echo "error: ${SYMBOLSFILE} not found"
+  err "${SYMBOLSFILE} not found"
   exit 1
 fi
 

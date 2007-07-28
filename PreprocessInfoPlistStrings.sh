@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Defaults
 #
@@ -65,13 +67,13 @@ do
   elif [ "${WRAPPER_EXTENSION}" = "menu" ]; then
     PLIST_PATH=".."
   else
-    builtin echo ":: error: unknown wrapper extension ${WRAPPER_EXTENSION}"
+    err "unknown wrapper extension ${WRAPPER_EXTENSION}"
     exit 1
   fi
   
   # wincent-strings-util will bail for non-existent merge files
   if [ ! -f "${RESOURCES}/${LANGUAGE}/InfoPlist.strings" ]; then
-    builtin echo ":: warning: ${RESOURCES}/${LANGUAGE}/InfoPlist.strings does not exist"
+    warn "${RESOURCES}/${LANGUAGE}/InfoPlist.strings does not exist"
   else
     builtin echo "Prepocessing ${RESOURCES}/${LANGUAGE}/InfoPlist.strings"
     "${GLOT}" -info     "${RESOURCES}/${PLIST_PATH}/Info.plist"       \

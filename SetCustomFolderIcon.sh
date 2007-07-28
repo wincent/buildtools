@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Defaults
 #
@@ -49,12 +51,12 @@ fi
 ICON="$1"
 
 if [ ! -f "${ICON}" ]; then
-  builtin echo "error: icns file ${ICON} not found"
+  err "icns file ${ICON} not found"
   exit 1
 fi
 
 if [ ! -d "${FOLDER}" ]; then
-  builtin echo "error: directory ${FOLDER} not found"
+  err "directory ${FOLDER} not found"
   exit 1
 fi
 

@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. "${BUILDTOOLS_DIR}/Common.sh"
+
 #
 # Defaults
 #
@@ -75,7 +77,7 @@ BASEDIR="$1"
 cd "${BASEDIR}"
 if [ ! -e "${DEVLANGUAGE}.lproj" ]
 then
-  builtin echo ":: error: ${DEVLANGUAGE}.lproj folder not found in ${BASEDIR}"
+  err "${DEVLANGUAGE}.lproj folder not found in ${BASEDIR}"
   exit 1
 fi
 
