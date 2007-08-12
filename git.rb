@@ -24,7 +24,7 @@ module Git
     raise "'#{rev}' is not a valid revision number" unless rev =~ /\A[a-f0-9]{7}\z/
 
     # append "+" if there are local modifications
-    `env PAGER=cat git diff --quiet HEAD`
+    `env GIT_PAGER=cat git diff --quiet HEAD`
     rev = "#{rev}+" if $? != 0
     rev
   end
