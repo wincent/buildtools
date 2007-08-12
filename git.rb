@@ -24,8 +24,8 @@ module Git
     raise "'#{rev}' is not a valid revision number" unless rev =~ /\A[a-f0-9]{7}\z/
 
     # append "+" if there are local modifications
-    `env GIT_PAGER=cat git diff --quiet HEAD`
-    rev = "#{rev}+" if $? != 0
+    status = command('git status', false) # git status always exits with 1
+    rev << '+' unless status.split("\n").last == 'nothing to commit (working directory clean)'
     rev
   end
 
@@ -33,11 +33,13 @@ private
 
   # Runs the command passed in via string.
   # Returns the output from the command with any trailing newline stripped.
-  # Raises an exception if the command has a non-zero exit status.
-  def self.command(string)
+  # Raises an exception if the command has a non-zero exit status and require_zero_exit_status is true (the default).
+  def self.command(string, require_zero_exit_status = true)
     `#{string}`.chomp
   ensure
-    raise 'non-zero exit status (#{$?.exitstatus}) for command: #{string}' if $?.exitstatus != 0
+    if require_zero_exit_status and $?.exitstatus != 0
+      raise "non-zero exit status (#{$?.exitstatus}) for command: #{string}"
+    end
   end
 
 end # module Git
