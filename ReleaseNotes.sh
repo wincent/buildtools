@@ -20,6 +20,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Xcode will ignore the shebang line, making the -e above ineffective
+set -e
+
 # bail early if not inside a Git repo
 git rev-parse --is-inside-work-tree 1> /dev/null 2>&1 || exit
 
