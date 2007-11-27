@@ -36,6 +36,6 @@ else
   PREV_TAG=$ABBREV_TAG
 fi
 
-echo "Changes from $PREV_TAG to $TAG:\n"
+echo -e "Changes from $PREV_TAG to $TAG:\n"
 git log $TAG ^$PREV_TAG | git shortlog
 
