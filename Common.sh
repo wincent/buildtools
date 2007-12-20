@@ -41,6 +41,12 @@ err()
   builtin echo ":: error: $1"
 }
 
+die()
+{
+  err "$1"
+  exit 1
+}
+
 #
 # Use AppleScript to instruct Xcode to close a file, allowing us to modify it.
 #
