@@ -20,13 +20,12 @@
 
 module Git
   def self.get_rev_number
-    rev = command('git show -s --pretty=format:"%h" HEAD')
-    raise "'#{rev}' is not a valid revision number" unless rev =~ /\A[a-f0-9]{7}\z/
+    rev = command('git rev-parse --short HEAD')
+    raise "'#{rev}' is not a valid revision number" unless rev =~ /\A[a-f0-9]{7}[a-f0-9]*\z/
 
     # append "+" if there are local modifications
-    # command method not used here as "git status" always exits with 1
-    status = `git status`.chomp.split("\n").last
-    rev << '+' unless status == 'nothing to commit (working directory clean)'
+    `git diff --quiet`
+    rev << '+' if $?.exitstatus != 0
     rev
   end
 
