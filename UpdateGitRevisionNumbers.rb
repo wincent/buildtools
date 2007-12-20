@@ -23,6 +23,7 @@ require 'pathname'
 
 target  = Pathname.new 'com.wincent.buildtools.gitrev.h'
 rev     = Git::get_rev_number
+date    = Time.new.to_s
 output  = <<-HEADER
 
 /*
@@ -31,6 +32,7 @@ output  = <<-HEADER
  */
 
 #define WO_BUILDNUMBER #{rev}
+#define WO_BUILDDATE "#{date}"
 
 HEADER
 
