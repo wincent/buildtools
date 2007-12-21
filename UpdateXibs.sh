@@ -39,7 +39,7 @@ for LOC in $(find . -type d -name '*.lproj' -not -name "$BASE"); do
     XIB=$(basename "$BASE_XIB")
     TARGET_XIB="$LOC/$XIB"
     if [ ! -f "$TARGET_XIB" ]; then
-      echo "Target xib '$TARGET_XIB' does not exist; cloning from $BASE_XIB"
+      note "Target xib '$TARGET_XIB' does not exist; cloning from $BASE_XIB"
       cp "$BASE_XIB" "$TARGET_XIB"
     fi
 
