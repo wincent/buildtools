@@ -25,6 +25,11 @@
 # Functions
 #
 
+processing()
+{
+  echo "$BOLD[Processing]$RESET $1"
+}
+
 checking()
 {
   echo "$BOLD[Checking]$RESET $1"
@@ -88,7 +93,11 @@ test -d "$BASE" || die "base directory $BASE not found in $1"
 TMPDIR=$(mktemp -d /private/tmp/com.wincent.buildtools.UpdateXibs.XXXXXX) ||
   die "couldn't create temporary directory"
 
+# without this an early exit might escape our notice
+trap 'die "aborting due to non-zero exit status; try running again using sh -x to identify the command which failed"' EXIT
+
 # create/update strings files in base language if required
+processing "$BASE."
 for BASE_XIB in $(find "$BASE" -name '*.xib'); do
   BASE_STRINGS=$(echo "$BASE_XIB" | sed -e 's/\.xib/.strings/')
   if [ ! -f "$BASE_STRINGS" ]; then
@@ -103,10 +112,14 @@ for BASE_XIB in $(find "$BASE" -name '*.xib'); do
     else
       skipping "Base strings file '$BASE_STRINGS' (already up-to-date)."
     fi
+  else
+    skipping "Base strings file '$BASE_STRINGS' (newer than xib)."
   fi
 done
 
+# now iterate over target languages
 for LOC in $(find . -type d -name '*.lproj' -depth 1 -not -name "$BASE"); do
+  processing "$(basename $LOC)."
   for BASE_XIB in $(find "$BASE" -name '*.xib'); do
 
     # create xibs in target language if required
@@ -132,6 +145,8 @@ for LOC in $(find . -type d -name '*.lproj' -depth 1 -not -name "$BASE"); do
       else
         skipping "Target strings file '$TARGET_STRINGS' (already up-to-date)."
       fi
+    else
+      skipping "Target strings file '$TARGET_STRINGS' (newer than xib)."
     fi
 
     # merge new strings from base langauge into target language strings files
@@ -189,3 +204,4 @@ for LOC in $(find . -type d -name '*.lproj' -depth 1 -not -name "$BASE"); do
   done
 done
 
+trap '' EXIT
