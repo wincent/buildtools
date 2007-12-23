@@ -43,21 +43,6 @@ printusage()
   builtin echo "Note:    By design this script is not recursive"
 }
 
-close_document_if_open()
-{
-  builtin echo "Closing ${1}, if it is open"
-  
-  WO_LAST_PATH_COMPONENT=`builtin echo ${1} | /usr/bin/perl -p -e 's#.*/##'`
-
-  builtin echo -e "                                                         \n\
-                                                                            \n\
-  tell application \"Xcode\"                                                \n\
-      try                                                                   \n\
-          close document \"${WO_LAST_PATH_COMPONENT}\" saving ask           \n\
-      end try                                                               \n\
-  end tell \n " | /usr/bin/osascript
-}
-
 #
 # Main
 #
@@ -90,7 +75,7 @@ builtin echo "Making backups of old strings files in ${DEVLANGUAGE}.lproj"
 builtin echo "Will close these files if they are open:"
 for STRINGSFILE in `/usr/bin/find "${DEVLANGUAGE}.lproj" -name "*.strings" -print`
 do
-  close_document_if_open "${STRINGSFILE}"
+  close "${STRINGSFILE}"
 done
 
 builtin echo "Running genstrings"
@@ -112,7 +97,7 @@ do
                       /usr/bin/grep "\.strings$"`
   do
     # shield Xcode from the trauma of open files being edited
-    close_document_if_open "${STRINGSFILE}"
+    close "${STRINGSFILE}"
     
     # wincent-strings-util will bail for non-existent merge files
     builtin echo "Touching ${LANGUAGE}/${STRINGSFILE}"
