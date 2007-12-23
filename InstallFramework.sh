@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # InstallFramework.sh
 # buildtools
@@ -22,7 +22,7 @@
 #
 # Defaults
 #
-TOOL="/usr/bin/install_name_tool"
+TOOL="install_name_tool"
 EMBEDDED_PREFIX="@executable_path/../Frameworks"
 INSTALLED_PREFIX="/Library/Frameworks"
 
@@ -54,10 +54,10 @@ if [ -z "${FRAMEWORK_VERSION}" ]; then
 fi
 
 builtin echo "Removing old version of framework ${ID}.framework from ${INSTALLED_PREFIX}, if present"
-/bin/rm -rf "${INSTALLED_PREFIX}/${ID}.framework"
+rm -rf "${INSTALLED_PREFIX}/${ID}.framework"
 
 builtin echo "Copying framework ${ID}.framework into ${INSTALLED_PREFIX}, overwriting old version if present"
-/bin/cp -vfR "${TARGET_BUILD_DIR}/${ID}.framework" "${INSTALLED_PREFIX}/"
+cp -vfR "${TARGET_BUILD_DIR}/${ID}.framework" "${INSTALLED_PREFIX}/"
 cd "${INSTALLED_PREFIX}/${ID}.framework/Versions/${FRAMEWORK_VERSION}"
 
 NEW_ID="${INSTALLED_PREFIX}/${ID}.framework/Versions/${FRAMEWORK_VERSION}/${ID}"

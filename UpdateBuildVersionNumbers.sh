@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # UpdateBuildVersionNumbers.sh
 # buildtools
@@ -50,20 +50,20 @@ update_copyright_years()
   builtin echo "Updating WO_COPYRIGHT_YEAR entry"
   
   # get current year
-  YEAR=`/bin/date +%Y`
+  YEAR=`date +%Y`
   
   # in the line : #define WO_COPYRIGHT_YEAR ... update: "... XXXX ..."
-  /bin/cat ${SOURCE_ROOT}/${WO_VERSION_FILE} | /usr/bin/sed \
+  cat "${SOURCE_ROOT}/${WO_VERSION_FILE}" | sed \
     -e "/^#define[ ][ ]*WO_COPYRIGHT_YEAR[ ]/s/\(.*\)[0-9]\{4\}\([^\-]*\)/\1${YEAR}\2/" \
-    > ${SOURCE_ROOT}/${WO_VERSION_FILE}.temp
+    > "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp"
   
   if [ $? -eq 0 ]; then
     
     # only copy the file if it's actually different
     $(diff ${SOURCE_ROOT}/${WO_VERSION_FILE}.temp ${SOURCE_ROOT}/${WO_VERSION_FILE})
     if [ $? -ne 0 ]; then
-      cp -fv ${SOURCE_ROOT}/${WO_VERSION_FILE}.temp \
-             ${SOURCE_ROOT}/${WO_VERSION_FILE}
+      cp -fv "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp" \
+             "${SOURCE_ROOT}/${WO_VERSION_FILE}"
     fi
     
   else
@@ -90,13 +90,13 @@ fi
 close "${WO_VERSION_FILE}"
 builtin echo "Making backup of ${WO_VERSION_FILE}"
 
-/bin/cp -fv ${SOURCE_ROOT}/${WO_VERSION_FILE} \
-            ${SOURCE_ROOT}/${WO_VERSION_FILE}.bak
+cp -fv "${SOURCE_ROOT}/${WO_VERSION_FILE}" \
+       "${SOURCE_ROOT}/${WO_VERSION_FILE}.bak"
 
 # Scan for copyright and update
 update_copyright_years
 
 # ensure all pending writes flushed to disk
-/bin/sync
+sync
 
 builtin echo "$0: Done"

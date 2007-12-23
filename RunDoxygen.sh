@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # RunDoxygen.sh
 # buildtools
@@ -25,7 +25,7 @@
 # Defaults
 #
 DOXYFILE="${SOURCE_ROOT}/Doxyfile"
-#DOXYGEN="/usr/local/bin/doxygen"
+#DOXYGEN="doxygen"
 DOXYGEN="/Applications/Doxygen.app/Contents/Resources/doxygen"
 
 #

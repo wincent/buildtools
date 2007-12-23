@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # StripFrameworkSymbols.sh
 # buildtools
@@ -65,7 +65,7 @@ if [ ${CONFIGURATION} == "Debug" ]; then
 elif [ ${CONFIGURATION} == "Release" ]; then
   FRAMEWORK="${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Versions/${FRAMEWORK_VERSION}/${PRODUCT_NAME}"
   builtin echo "Release build: Stripping symbols from ${FRAMEWORK}"
-  /usr/bin/strip -u -r -s "${SYMBOLSFILE}" "${FRAMEWORK}"
+  strip -u -r -s "${SYMBOLSFILE}" "${FRAMEWORK}"
 else
   builtin echo "Unknown configuration"
   exit 1

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # InstallIBPalette.sh
 # buildtools
@@ -22,7 +22,7 @@
 #
 # Defaults
 #
-TOOL="/usr/bin/install_name_tool"
+TOOL="install_name_tool"
 EMBEDDED_PREFIX="@executable_path/../Frameworks"
 INSTALLED_PREFIX="/Library/Frameworks"
 DEST_DIR="${HOME}/Library/Palettes"
@@ -55,10 +55,10 @@ if [ -z "${FRAMEWORK_VERSION}" ]; then
 fi
 
 builtin echo "Removing old version of palette ${BASE_NAME}.palette from ${DEST_DIR}, if present"
-/bin/rm -rf "${DEST_DIR}/${BASE_NAME}.palette"
+rm -rf "${DEST_DIR}/${BASE_NAME}.palette"
 
 builtin echo "Copying palette ${BASE_NAME}.palette into ${DEST_DIR}, overwriting old version if present"
-/bin/cp -vfR "${TARGET_BUILD_DIR}/${BASE_NAME}.palette" "${DEST_DIR}/"
+cp -vfR "${TARGET_BUILD_DIR}/${BASE_NAME}.palette" "${DEST_DIR}/"
 cd "${DEST_DIR}/${BASE_NAME}.palette/Contents/MacOS"
 
 while shift

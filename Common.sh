@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Common.sh
 # buildtools
@@ -80,7 +80,7 @@ die()
 close()
 {
   builtin echo "Closing $1, if it is open"
-  WO_LAST_PATH_COMPONENT=`builtin echo $1 | /usr/bin/perl -p -e 's#.*/##'`
+  WO_LAST_PATH_COMPONENT=$(builtin echo "$1" | perl -p -e 's#.*/##')
   
   # only execute if Xcode is actually running (may not be if building using xcodebuild)
   builtin echo -e "                                                           \n\
@@ -93,5 +93,5 @@ close()
               end try                                                         \n\
           end tell
       end if
-  end tell \n " | /usr/bin/osascript
+  end tell \n " | osascript
 }

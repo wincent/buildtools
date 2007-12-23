@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # UpdateStringsFiles.sh
 # buildtools
@@ -68,20 +68,20 @@ fi
 
 # make backups of existing strings files
 builtin echo "Making backups of old strings files in ${DEVLANGUAGE}.lproj"
-/usr/bin/find "${DEVLANGUAGE}.lproj" -name "*.strings" -print -exec \
-  /bin/cp -vf "{}" "{}.bak" \;
+find "${DEVLANGUAGE}.lproj" -name "*.strings" -print -exec \
+  cp -vf "{}" "{}.bak" \;
 
 # update development language localizable strings file(s)
 builtin echo "Will close these files if they are open:"
-for STRINGSFILE in `/usr/bin/find "${DEVLANGUAGE}.lproj" -name "*.strings" -print`
+for STRINGSFILE in `find "${DEVLANGUAGE}.lproj" -name "*.strings" -print`
 do
   close "${STRINGSFILE}"
 done
 
 builtin echo "Running genstrings"
-/usr/bin/genstrings -u -o "${DEVLANGUAGE}.lproj" *.m *.c *.h
+genstrings -u -o "${DEVLANGUAGE}.lproj" *.m *.c *.h
 
-for LANGUAGE in `/usr/bin/find . -name "*.lproj" -maxdepth 1`
+for LANGUAGE in `find . -name "*.lproj" -maxdepth 1`
 do
   builtin echo "Processing localization in folder: ${LANGUAGE}"
   if [ "${LANGUAGE}" = "./${DEVLANGUAGE}.lproj" ]; then
@@ -90,18 +90,18 @@ do
   fi
   
   builtin echo "Making backups of old strings files in ${LANGUAGE}"
-  /usr/bin/find "${LANGUAGE}" -name "*.strings" -print -exec \
-    /bin/cp -vf "{}" "{}.bak" \;
+  find "${LANGUAGE}" -name "*.strings" -print -exec \
+    cp -vf "{}" "{}.bak" \;
   
-  for STRINGSFILE in `/bin/ls "${DEVLANGUAGE}.lproj" | \
-                      /usr/bin/grep "\.strings$"`
+  for STRINGSFILE in `ls "${DEVLANGUAGE}.lproj" | \
+                      grep "\.strings$"`
   do
     # shield Xcode from the trauma of open files being edited
     close "${STRINGSFILE}"
     
     # wincent-strings-util will bail for non-existent merge files
     builtin echo "Touching ${LANGUAGE}/${STRINGSFILE}"
-    /usr/bin/touch "${LANGUAGE}/${STRINGSFILE}"
+    touch "${LANGUAGE}/${STRINGSFILE}"
     
     builtin echo "Merging ${LANGUAGE}/${STRINGSFILE}"
     ${GLOT} --base    "${DEVLANGUAGE}.lproj/${STRINGSFILE}" \
