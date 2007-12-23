@@ -25,8 +25,6 @@
 # Main
 #
 
-# TODO: replace manual mod date checks with test's -ot (older than) and -nt (newer than) primaries
-
 set -e
 
 # process environment variables
@@ -35,43 +33,43 @@ if [ ${SCRIPT_INPUT_FILE_COUNT} -lt 1 -o ${SCRIPT_OUTPUT_FILE_COUNT} -lt 1 ]; th
   exit 0
 fi
 
-NEWEST_INPUT=$(stat -f "%m" "${SCRIPT_INPUT_FILE_0}")
-builtin echo "Checking modification date for input file ${SCRIPT_INPUT_FILE_0}: ${NEWEST_INPUT}"
+# find out the newest input file
+NEWEST_INPUT=$SCRIPT_INPUT_FILE_0
+builtin echo "Checking modification date for input file $SCRIPT_INPUT_FILE_0"
 
-for (( FILE_COUNT=1 ; ${FILE_COUNT} < ${SCRIPT_INPUT_FILE_COUNT}; FILE_COUNT++ ))
+for (( FILE_COUNT=1 ; $FILE_COUNT < $SCRIPT_INPUT_FILE_COUNT ; FILE_COUNT++ ))
 do
   FILE=$(declare -p SCRIPT_INPUT_FILE_$FILE_COUNT | awk -F "=" '{print $2}' | sed -e 's/"$//' -e 's/^"//')
-  FILE_MOD_DATE=$(stat -f "%m" "${FILE}")
-  builtin echo "Checking modification date for input file ${FILE}: ${FILE_MOD_DATE}"
-  if [ ${FILE_MOD_DATE} -gt ${NEWEST_INPUT} ]; then
-    NEWEST_INPUT=${FILE_MOD_DATE}
+  builtin echo "Checking modification date for input file ${FILE}"
+  if [ "$FILE" -nt "$NEWEST_INPUT" ]; then
+    NEWEST_INPUT=$FILE
   fi
 done
 
-if [ ! -e "${SCRIPT_OUTPUT_FILE_0}" ]; then
-  builtin echo "Output file ${SCRIPT_OUTPUT_FILE_0} does not exist; aborting and returning 1"
+# find out the oldest output file
+if [ ! -e "$SCRIPT_OUTPUT_FILE_0" ]; then
+  builtin echo "Output file $SCRIPT_OUTPUT_FILE_0 does not exist; aborting and returning 1"
   return 1
 fi
   
-OLDEST_OUTPUT=$(stat -f "%m" "${SCRIPT_OUTPUT_FILE_0}")
-builtin echo "Checking modification date for output file ${SCRIPT_OUTPUT_FILE_0}: ${NEWEST_OUTPUT}"
+OLDEST_OUTPUT=$SCRIPT_OUTPUT_FILE_0
+builtin echo "Checking modification date for output file $SCRIPT_OUTPUT_FILE_0"
 
-for (( FILE_COUNT=1 ; ${FILE_COUNT} < ${SCRIPT_OUTPUT_FILE_COUNT}; FILE_COUNT++ ))
+for (( FILE_COUNT=1 ; $FILE_COUNT < $SCRIPT_OUTPUT_FILE_COUNT ; FILE_COUNT++ ))
 do
   FILE=$(declare -p SCRIPT_OUTPUT_FILE_$FILE_COUNT | awk -F "=" '{print $2}' | sed -e 's/"$//' -e 's/^"//')
   if [ -e "${FILE}" ]; then 
-    FILE_MOD_DATE=$(stat -f "%m" "${FILE}")
-    builtin echo "Checking modification date for output file ${FILE}: ${FILE_MOD_DATE}"
-    if [ ${FILE_MOD_DATE} -lt ${OLDEST_OUTPUT} ]; then
-      OLDEST_OUTPUT=${FILE_MOD_DATE}
+    builtin echo "Checking modification date for output file ${FILE}"
+    if [ "$FILE" -ot "$OLDEST_OUTPUT" ]; then
+      OLDEST_OUTPUT=$FILE
     fi
   else
-    builtin echo "Output file ${FILE} does not exist; aborting and returning 1"
+    builtin echo "Output file $FILE does not exist; aborting and returning 1"
     return 1
   fi
 done
 
-if [ ${NEWEST_INPUT} -gt ${OLDEST_OUTPUT} ]; then
+if [ "$NEWEST_INPUT" -nt "$OLDEST_OUTPUT" ]; then
   builtin echo "Newest input file is newer than oldest output file: returning 1"
   return 1
 else
