@@ -73,7 +73,7 @@ find "${DEVLANGUAGE}.lproj" -name "*.strings" -print -exec \
 
 # update development language localizable strings file(s)
 builtin echo "Will close these files if they are open:"
-for STRINGSFILE in `find "${DEVLANGUAGE}.lproj" -name "*.strings" -print`
+for STRINGSFILE in $(find "${DEVLANGUAGE}.lproj" -name "*.strings" -print)
 do
   close "${STRINGSFILE}"
 done
@@ -81,7 +81,7 @@ done
 builtin echo "Running genstrings"
 genstrings -u -o "${DEVLANGUAGE}.lproj" *.m *.c *.h
 
-for LANGUAGE in `find . -name "*.lproj" -maxdepth 1`
+for LANGUAGE in $(find . -name "*.lproj" -maxdepth 1)
 do
   builtin echo "Processing localization in folder: ${LANGUAGE}"
   if [ "${LANGUAGE}" = "./${DEVLANGUAGE}.lproj" ]; then

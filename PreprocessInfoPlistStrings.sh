@@ -51,7 +51,7 @@ fi
 RESOURCES="$1"
 
 cd "${RESOURCES}"
-for LANGUAGE in `find . -name "*.lproj" -maxdepth 1`
+for LANGUAGE in $(find . -name "*.lproj" -maxdepth 1)
 do
   builtin echo "Preprocessing language: ${LANGUAGE}"
   

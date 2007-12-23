@@ -50,7 +50,7 @@ update_copyright_years()
   builtin echo "Updating WO_COPYRIGHT_YEAR entry"
   
   # get current year
-  YEAR=`date +%Y`
+  YEAR=$(date +%Y)
   
   # in the line : #define WO_COPYRIGHT_YEAR ... update: "... XXXX ..."
   cat "${SOURCE_ROOT}/${WO_VERSION_FILE}" | sed \

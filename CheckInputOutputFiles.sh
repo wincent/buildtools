@@ -35,13 +35,13 @@ if [ ${SCRIPT_INPUT_FILE_COUNT} -lt 1 -o ${SCRIPT_OUTPUT_FILE_COUNT} -lt 1 ]; th
   exit 0
 fi
 
-NEWEST_INPUT=`stat -f "%m" "${SCRIPT_INPUT_FILE_0}"`
+NEWEST_INPUT=$(stat -f "%m" "${SCRIPT_INPUT_FILE_0}")
 builtin echo "Checking modification date for input file ${SCRIPT_INPUT_FILE_0}: ${NEWEST_INPUT}"
 
 for (( FILE_COUNT=1 ; ${FILE_COUNT} < ${SCRIPT_INPUT_FILE_COUNT}; FILE_COUNT++ ))
 do
   FILE=$(declare -p SCRIPT_INPUT_FILE_$FILE_COUNT | awk -F "=" '{print $2}' | sed -e 's/"$//' -e 's/^"//')
-  FILE_MOD_DATE=`stat -f "%m" "${FILE}"`
+  FILE_MOD_DATE=$(stat -f "%m" "${FILE}")
   builtin echo "Checking modification date for input file ${FILE}: ${FILE_MOD_DATE}"
   if [ ${FILE_MOD_DATE} -gt ${NEWEST_INPUT} ]; then
     NEWEST_INPUT=${FILE_MOD_DATE}
@@ -53,14 +53,14 @@ if [ ! -e "${SCRIPT_OUTPUT_FILE_0}" ]; then
   return 1
 fi
   
-OLDEST_OUTPUT=`stat -f "%m" "${SCRIPT_OUTPUT_FILE_0}"`
+OLDEST_OUTPUT=$(stat -f "%m" "${SCRIPT_OUTPUT_FILE_0}")
 builtin echo "Checking modification date for output file ${SCRIPT_OUTPUT_FILE_0}: ${NEWEST_OUTPUT}"
 
 for (( FILE_COUNT=1 ; ${FILE_COUNT} < ${SCRIPT_OUTPUT_FILE_COUNT}; FILE_COUNT++ ))
 do
   FILE=$(declare -p SCRIPT_OUTPUT_FILE_$FILE_COUNT | awk -F "=" '{print $2}' | sed -e 's/"$//' -e 's/^"//')
   if [ -e "${FILE}" ]; then 
-    FILE_MOD_DATE=`stat -f "%m" "${FILE}"`
+    FILE_MOD_DATE=$(stat -f "%m" "${FILE}")
     builtin echo "Checking modification date for output file ${FILE}: ${FILE_MOD_DATE}"
     if [ ${FILE_MOD_DATE} -lt ${OLDEST_OUTPUT} ]; then
       OLDEST_OUTPUT=${FILE_MOD_DATE}
