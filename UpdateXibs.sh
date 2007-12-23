@@ -149,7 +149,7 @@ for LOC in $(find . -type d -name '*.lproj' -depth 1 -not -name "$BASE"); do
       skipping "Target strings file '$TARGET_STRINGS' (newer than xib)."
     fi
 
-    # merge new strings from base langauge into target language strings files
+    # merge new strings from base language into target language strings files
     BASE_STRINGS=$(echo "$BASE_XIB" | sed -e 's/\.xib/.strings/')
     mkdir -p $(dirname "$TMPDIR/$TARGET_STRINGS")
     wincent-strings-util --base "$BASE_STRINGS" \
