@@ -20,6 +20,28 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #
+# Set-up
+#
+
+# Find out if terminal supports the following attributes (see terminfo(5)):
+#   bold  : enter_bold_mode (turn on bold (extra bright) mode)
+#   setaf : set_a_foreground (set the foreground color to the specified parameter)
+#   sgr0  : exit_attribute_mode (turn off all attributes)
+# When running under Xcode, the tput commands succeed even though color is not supported,
+# but the test for the open file descriptor (-t 1) fails, thus enabling us to disable color.
+test -z "$BUILDTOOLS_COLOR" &&
+  test -t 1 &&
+  tput bold > /dev/null 2>&1 &&
+  tput setaf 1 > /dev/null 2>&1 &&
+  tput sgr0 > /dev/null 2>&1 &&
+  BUILDTOOLS_COLOR=true
+
+if [ -n "$BUILDTOOLS_COLOR" ]; then
+  BOLD="\033[1m"
+  RESET="\033[0m"
+fi
+
+#
 # Functions
 #
 
