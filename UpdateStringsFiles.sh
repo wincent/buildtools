@@ -119,9 +119,9 @@ do
     /usr/bin/touch "${LANGUAGE}/${STRINGSFILE}"
     
     builtin echo "Merging ${LANGUAGE}/${STRINGSFILE}"
-    ${GLOT} -base "${DEVLANGUAGE}.lproj/${STRINGSFILE}"  \
-            -merge "${LANGUAGE}/${STRINGSFILE}"          \
-            -output "${LANGUAGE}/${STRINGSFILE}"
+    ${GLOT} --base    "${DEVLANGUAGE}.lproj/${STRINGSFILE}" \
+            --merge   "${LANGUAGE}/${STRINGSFILE}"          \
+            --output  "${LANGUAGE}/${STRINGSFILE}"
    
    done
 

@@ -137,14 +137,14 @@ for LOC in $(find . -type d -name '*.lproj' -depth 1 -not -name "$BASE"); do
     # merge new strings from base langauge into target language strings files
     BASE_STRINGS=$(echo "$BASE_XIB" | sed -e 's/\.xib/.strings/')
     mkdir -p $(dirname "$TMPDIR/$TARGET_STRINGS")
-    wincent-strings-util -base "$BASE_STRINGS" \
-      -merge "$TARGET_STRINGS" \
-      -output "$TMPDIR/$TARGET_STRINGS" 2> /dev/null
+    wincent-strings-util --base "$BASE_STRINGS" \
+      --merge "$TARGET_STRINGS" \
+      --output "$TMPDIR/$TARGET_STRINGS" 2> /dev/null
     if compare "$TARGET_STRINGS" "$TMPDIR/$TARGET_STRINGS"; then
       updating "Target language strings file '$TARGET_STRINGS' (merging from base)."
-      wincent-strings-util -base "$BASE_STRINGS" \
-        -merge "$TARGET_STRINGS" \
-        -output "$TARGET_STRINGS"
+      wincent-strings-util --base "$BASE_STRINGS" \
+        --merge "$TARGET_STRINGS" \
+        --output "$TARGET_STRINGS"
     else
       skipping "Target language strings file '$TARGET_STRINGS' (already up-to-date)."
     fi
@@ -153,33 +153,33 @@ for LOC in $(find . -type d -name '*.lproj' -depth 1 -not -name "$BASE"); do
     INCREMENTAL=$(echo "$TARGET_STRINGS" | sed -e 's/\.strings/.untranslated.strings/')
     if [ ! -f "$INCREMENTAL" ]; then
       generating "Incremental strings file '$INCREMENTAL'."
-      wincent-strings-util -base "$BASE_STRINGS" \
-        -extract "$TARGET_STRINGS" \
-        -output "$INCREMENTAL"
+      wincent-strings-util --base "$BASE_STRINGS" \
+        --extract "$TARGET_STRINGS" \
+        --output "$INCREMENTAL"
     elif [ "$TARGET_STRINGS" -nt "$INCREMENTAL" ]; then
       mkdir -p $(dirname "$TMPDIR/$INCREMENTAL")
-      wincent-strings-util -base "$BASE_STRINGS" \
-        -extract "$TARGET_STRINGS" \
-        -output "$TMPDIR/$INCREMENTAL" 2> /dev/null
+      wincent-strings-util --base "$BASE_STRINGS" \
+        --extract "$TARGET_STRINGS" \
+        --output "$TMPDIR/$INCREMENTAL" 2> /dev/null
       if compare "$TARGET_STRINGS" "$TMPDIR/$INCREMENTAL"; then
         updating "Incremental strings file '$INCREMENTAL'."
-        wincent-strings-util -base "$BASE_STRINGS" \
-          -extract "$TARGET_STRINGS" \
-          -output "$INCREMENTAL"
+        wincent-strings-util --base "$BASE_STRINGS" \
+          --extract "$TARGET_STRINGS" \
+          --output "$INCREMENTAL"
       else
         skipping "Incremental strings file '$INCREMENTAL' (already up-to-date)."
       fi
     fi
 
     # combine incremental strings files with existing files
-    wincent-strings-util -base "$TARGET_STRINGS" \
-      -combine "$INCREMENTAL" \
-      -output "$TMPDIR/$TARGET_STRINGS" 2> /dev/null
+    wincent-strings-util --base "$TARGET_STRINGS" \
+      --combine "$INCREMENTAL" \
+      --output "$TMPDIR/$TARGET_STRINGS" 2> /dev/null
     if compare "$TARGET_STRINGS" "$TMPDIR/$TARGET_STRINGS"; then
       combining "'$INCREMENTAL' and '$TARGET_STRINGS'."
-      wincent-strings-util -base "$TARGET_STRINGS" \
-        -combine "$INCREMENTAL" \
-        -output "$TARGET_STRINGS"
+      wincent-strings-util --base "$TARGET_STRINGS" \
+        --combine "$INCREMENTAL" \
+        --output "$TARGET_STRINGS"
     else
       skipping "Combination of '$INCREMENTAL' and '$TARGET_STRINGS' (already up-to-date)."
     fi
