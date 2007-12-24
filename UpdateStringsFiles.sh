@@ -3,7 +3,7 @@
 # UpdateStringsFiles.sh
 # buildtools
 #
-# Created by Wincent Colaiuta on Fri Dec 30 2003.
+# Created by Wincent Colaiuta on 30 December 2003.
 # 
 # Copyright 2003-2007 Wincent Colaiuta.
 # This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,6 @@
 # Defaults
 #
 
-GLOT="wincent-strings-util"
 DEVLANGUAGE="en"
 
 #
@@ -34,13 +33,9 @@ DEVLANGUAGE="en"
 
 printusage()
 {
-  # BUG: Xcode always passes "English" as DEVELOPMENT_LANGUAGE environment variable, even when it should pass "en"
-  # as a result, must explicitly specify dev language as an argument to this script
-  builtin echo "Usage:   $0 unlocalized-resources-folder [development-language]"
-  builtin echo "Where:   \"unlocalized-resources-folder\" contains your source and .lproj folders"
-  builtin echo "         \"development-language\", if not specified, defaults to \"en\""
-  builtin echo "Example: $0 ~/Project/src"
-  builtin echo "Note:    By design this script is not recursive"
+  echo "Usage:    $0 src_path resources_path"
+  echo "Example:  $0 ~/project/src ~/project/resources"
+  echo "Note:     By design this script is not recursive"
 }
 
 #
@@ -50,66 +45,59 @@ printusage()
 set -e
 
 # process arguments
-if [ $# -eq 2 ]; then
-  DEVLANGUAGE="$2"
-elif [ $# -gt 2 -o $# -lt 1 ]; then
+if [ $# -ne 2 ]; then
   printusage
   exit 1
 fi
-BASEDIR="$1"
+SRC_DIR=$1
+RESOURCE_DIR=$2
 
-# check for primary development language (normally "en")
-cd "${BASEDIR}"
-if [ ! -e "${DEVLANGUAGE}.lproj" ]
-then
-  err "${DEVLANGUAGE}.lproj folder not found in ${BASEDIR}"
-  exit 1
-fi
+# Xcode bug: "English" passed as DEVELOPMENT_LANGUAGE even when it should be "en"
+test -d "$RESOURCE_DIR/${DEVLANGUAGE}.lproj" ||
+  die "${DEVLANGUAGE}.lproj folder not found in $RESOURCE_DIR"
+
+# write output files to a temporary directory first so we can compare them for changes
+TMPDIR=$(mktemp -d /private/tmp/com.wincent.buildtools.UpdateStringsFiles.XXXXXX) ||
+  die "couldn't create temporary directory"
 
 # make backups of existing strings files
-builtin echo "Making backups of old strings files in ${DEVLANGUAGE}.lproj"
-find "${DEVLANGUAGE}.lproj" -name "*.strings" -print -exec \
+echo "Making backups of old strings files in $RESOURCE_DIR/${DEVLANGUAGE}.lproj"
+find "$RESOURCE_DIR/${DEVLANGUAGE}.lproj" -name '*.strings' -print -exec \
   cp -vf "{}" "{}.bak" \;
 
 # update development language localizable strings file(s)
-builtin echo "Will close these files if they are open:"
-for STRINGSFILE in $(find "${DEVLANGUAGE}.lproj" -name "*.strings" -print)
-do
+echo "Will close these files if they are open:"
+for STRINGSFILE in $(find "$RESOURCE_DIR/${DEVLANGUAGE}.lproj" -name '*.strings' -print); do
   close "${STRINGSFILE}"
 done
 
-builtin echo "Running genstrings"
-genstrings -u -o "${DEVLANGUAGE}.lproj" *.m *.c *.h
+echo "Running genstrings"
+genstrings -u -o "$RESOURCE_DIR/$DEVLANGUAGE.lproj" "$SRC_DIR"/*.m "$SRC_DIR"/*.c "$SRC_DIR"/*.h
 
-for LANGUAGE in $(find . -name "*.lproj" -maxdepth 1)
-do
-  builtin echo "Processing localization in folder: ${LANGUAGE}"
-  if [ "${LANGUAGE}" = "./${DEVLANGUAGE}.lproj" ]; then
-    builtin echo "Skipping (${DEVLANGUAGE} is the development language)"
-    continue
-  fi
-  
-  builtin echo "Making backups of old strings files in ${LANGUAGE}"
-  find "${LANGUAGE}" -name "*.strings" -print -exec \
+for LANGUAGE in $(find "$RESOURCE_DIR" -name '*.lproj' -depth 1 -not -name "${DEVLANGUAGE}.lproj"); do
+  builtin echo "Making backups of old strings files in $LANGUAGE"
+  find "$LANGUAGE" -name '*.strings' -print -exec \
     cp -vf "{}" "{}.bak" \;
-  
-  for STRINGSFILE in `ls "${DEVLANGUAGE}.lproj" | \
-                      grep "\.strings$"`
-  do
-    # shield Xcode from the trauma of open files being edited
-    close "${STRINGSFILE}"
-    
-    # wincent-strings-util will bail for non-existent merge files
-    builtin echo "Touching ${LANGUAGE}/${STRINGSFILE}"
-    touch "${LANGUAGE}/${STRINGSFILE}"
-    
-    builtin echo "Merging ${LANGUAGE}/${STRINGSFILE}"
-    ${GLOT} --base    "${DEVLANGUAGE}.lproj/${STRINGSFILE}" \
-            --merge   "${LANGUAGE}/${STRINGSFILE}"          \
-            --output  "${LANGUAGE}/${STRINGSFILE}"
-   
-   done
 
+  for STRINGSFILE in $(ls "$RESOURCE_DIR/${DEVLANGUAGE}.lproj" | grep '\.strings$'); do
+    # shield Xcode from the trauma of open files being edited
+    close "$STRINGSFILE"
+
+    # wincent-strings-util will bail for non-existent merge files
+    builtin echo "Touching $LANGUAGE/$STRINGSFILE"
+    touch "$LANGUAGE/$STRINGSFILE"
+
+    mkdir -p $(dirname "$TMPDIR/$LANGUAGE/$STRINGSFILE")
+    wincent-strings-util --base "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" \
+      --merge   "${LANGUAGE}/${STRINGSFILE}" \
+      --output  "$TMPDIR/$LANGUAGE/$STRINGSFILE" 2> /dev/null
+    if [ ! $(diff "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" "$TMPDIR/$LANGUAGE/$STRINGSFILE" > /dev/null) ]; then
+      builtin echo "Merging $LANGUAGE/$STRINGSFILE"
+      wincent-strings-util --base "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" \
+        --merge   "${LANGUAGE}/${STRINGSFILE}" \
+        --output  "${LANGUAGE}/${STRINGSFILE}"
+    fi
+   done
 done
 
 exit 0
