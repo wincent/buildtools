@@ -36,6 +36,14 @@ else
   PREV_TAG=$ABBREV_TAG
 fi
 
-echo -e "Changes from $PREV_TAG to $TAG:\n"
-git log $TAG ^$PREV_TAG | git shortlog
+# if we use: builtin echo -e "...\n"    works only from within Xcode and not interactively
+# if we use: echo "...\n"               works interactively but not from within Xcode
+# so fake it (kludge):
+echo "Changes from $PREV_TAG to $TAG:"
+echo ""
 
+if [ "$1" = "--long" ]; then
+  git log $TAG ^$PREV_TAG
+else
+  git log --pretty=format:'    %s' $TAG ^$PREV_TAG
+fi
