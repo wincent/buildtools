@@ -60,8 +60,7 @@ update_copyright_years()
   if [ $? -eq 0 ]; then
     
     # only copy the file if it's actually different
-    $(diff ${SOURCE_ROOT}/${WO_VERSION_FILE}.temp ${SOURCE_ROOT}/${WO_VERSION_FILE})
-    if [ $? -ne 0 ]; then
+    if compare "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp" "${SOURCE_ROOT}/${WO_VERSION_FILE}"; then
       cp -fv "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp" \
              "${SOURCE_ROOT}/${WO_VERSION_FILE}"
     fi

@@ -69,6 +69,12 @@ die()
   exit 1
 }
 
+# returns 0 (success) if the two input files differ, 1 otherwise
+compare()
+{
+  ! diff "$1" "$2" > /dev/null 2>&1
+}
+
 #
 # Use AppleScript to instruct Xcode to close a file, allowing us to modify it.
 #

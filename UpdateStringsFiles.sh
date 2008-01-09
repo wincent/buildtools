@@ -91,7 +91,7 @@ for LANGUAGE in $(find "$RESOURCE_DIR" -name '*.lproj' -depth 1 -not -name "${DE
     wincent-strings-util --base "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" \
       --merge   "${LANGUAGE}/${STRINGSFILE}" \
       --output  "$TMPDIR/$LANGUAGE/$STRINGSFILE" 2> /dev/null
-    if [ ! $(diff "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" "$TMPDIR/$LANGUAGE/$STRINGSFILE" > /dev/null) ]; then
+    if compare "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" "$TMPDIR/$LANGUAGE/$STRINGSFILE"; then
       builtin echo "Merging $LANGUAGE/$STRINGSFILE"
       wincent-strings-util --base "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" \
         --merge   "${LANGUAGE}/${STRINGSFILE}" \
