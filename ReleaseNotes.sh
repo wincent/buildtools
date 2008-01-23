@@ -48,7 +48,7 @@ do
     LONG=true
     ;;
   --tag-prefix=*)
-    TAG_PREFIX="${--tag-prefix=#1}"
+    TAG_PREFIX="${1#--tag-prefix=}"
     ;;
   *)
     usage
