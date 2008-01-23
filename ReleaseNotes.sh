@@ -87,3 +87,6 @@ if [ -n "$LONG" ]; then
 else
   git log --pretty=format:'    %s' $PREV_TAG..$TAG
 fi
+
+echo ""
+echo ""
