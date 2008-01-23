@@ -30,7 +30,7 @@ TAG=$(git describe)
 ABBREV_TAG=$(git describe --abbrev=0)
 if [ "$TAG" = "$ABBREV_TAG" ]; then
   # currently at a tag
-  PREV_TAG=$(git-describe HEAD^ --abbrev=0)
+  PREV_TAG=$(git describe HEAD^ --abbrev=0)
 else
   # somewhere ahead of a tag
   PREV_TAG=$ABBREV_TAG
