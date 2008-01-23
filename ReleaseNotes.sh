@@ -23,18 +23,56 @@
 # Xcode will ignore the shebang line, making the -e above ineffective
 set -e
 
+#
+# Functions
+#
+
+usage()
+{
+  echo 'Usage: ReleaseNotes.sh [--long] [--tag-prefix=prefix]'
+  exit 1
+}
+
 # bail early if not inside a Git repo
 git rev-parse --is-inside-work-tree 1> /dev/null 2>&1 || exit
 
-TAG=$(git describe)
-ABBREV_TAG=$(git describe --abbrev=0)
-if [ "$TAG" = "$ABBREV_TAG" ]; then
-  # currently at a tag
-  PREV_TAG=$(git describe HEAD^ --abbrev=0)
+# process arguments
+LONG=
+TAG_PREFIX=
+while test $# != 0
+do
+  case "$1" in
+  --long)
+    LONG=true
+    ;;
+  --tag-prefix=*)
+    TAG_PREFIX="${--tag-prefix=#1}"
+    ;;
+  *)
+    usage
+    ;;
+  esac
+  shift
+done
+
+if [ -n "$TAG_PREFIX" ]; then
+  TAG=$(git tag -l $TAG_PREFIX | tail -n 1)
+  PREV_TAG=$(git tag -l $TAG_PREFIX | tail -n 2 | head -1)
 else
-  # somewhere ahead of a tag
-  PREV_TAG=$ABBREV_TAG
+  # no explict tag prefix
+  TAG=$(git describe)
+  ABBREV_TAG=$(git describe --abbrev=0)
+  if [ "$TAG" = "$ABBREV_TAG" ]; then
+    # currently at a tag
+    PREV_TAG=$(git describe HEAD^ --abbrev=0)
+  else
+    # somewhere ahead of a tag
+    PREV_TAG=$ABBREV_TAG
+  fi
 fi
+
+test -n "$TAG" || exit 1
+test -n "$PREV_TAG" || exit 1
 
 # if we use: builtin echo -e "...\n"    works only from within Xcode and not interactively
 # if we use: echo "...\n"               works interactively but not from within Xcode
@@ -42,8 +80,8 @@ fi
 echo "Changes from $PREV_TAG to $TAG:"
 echo ""
 
-if [ "$1" = "--long" ]; then
-  git log $TAG ^$PREV_TAG
+if [ -n "$LONG" ]; then
+  git log $PREV_TAG..$TAG
 else
-  git log --pretty=format:'    %s' $TAG ^$PREV_TAG
+  git log --pretty=format:'    %s' $PREV_TAG..$TAG
 fi
