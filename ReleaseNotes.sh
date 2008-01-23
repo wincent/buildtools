@@ -58,8 +58,8 @@ do
 done
 
 if [ -n "$TAG_PREFIX" ]; then
-  TAG=$(git tag -l $TAG_PREFIX | tail -n 1)
-  PREV_TAG=$(git tag -l $TAG_PREFIX | tail -n 2 | head -1)
+  TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 1)
+  PREV_TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 2 | head -1)
 else
   # no explict tag prefix
   TAG=$(git describe)
