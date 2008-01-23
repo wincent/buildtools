@@ -23,6 +23,8 @@
 # Xcode will ignore the shebang line, making the -e above ineffective
 set -e
 
+. "$BUILDTOOLS_DIR/Common.sh"
+
 #
 # Functions
 #
@@ -34,7 +36,7 @@ usage()
 }
 
 # bail early if not inside a Git repo
-git rev-parse --is-inside-work-tree 1> /dev/null 2>&1 || exit
+git rev-parse --is-inside-work-tree 1> /dev/null 2>&1 || die 'not inside a Git repository'
 
 # process arguments
 LONG=
@@ -71,8 +73,8 @@ else
   fi
 fi
 
-test -n "$TAG" || exit 1
-test -n "$PREV_TAG" || exit 1
+test -n "$TAG" || die 'no value for TAG'
+test -n "$PREV_TAG" || die 'no value for PREV_TAG'
 
 # if we use: builtin echo -e "...\n"    works only from within Xcode and not interactively
 # if we use: echo "...\n"               works interactively but not from within Xcode
