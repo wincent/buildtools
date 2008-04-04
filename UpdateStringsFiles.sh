@@ -79,6 +79,9 @@ for LANGUAGE in $(find "$RESOURCE_DIR" -name '*.lproj' -depth 1 -not -name "${DE
   find "$LANGUAGE" -name '*.strings' -print -exec \
     cp -vf "{}" "{}.bak" \;
 
+  # LANGUAGE is an absolute path, so get base part as well
+  BASE_LANGUAGE=$(basename "$LANGUAGE")
+
   for STRINGSFILE in $(ls "$RESOURCE_DIR/${DEVLANGUAGE}.lproj" | grep '\.strings$'); do
     # shield Xcode from the trauma of open files being edited
     close "$STRINGSFILE"
@@ -87,11 +90,11 @@ for LANGUAGE in $(find "$RESOURCE_DIR" -name '*.lproj' -depth 1 -not -name "${DE
     builtin echo "Touching $LANGUAGE/$STRINGSFILE"
     touch "$LANGUAGE/$STRINGSFILE"
 
-    mkdir -p $(dirname "$TMPDIR/$LANGUAGE/$STRINGSFILE")
+    mkdir -p $(dirname "$TMPDIR/$BASE_LANGUAGE/$STRINGSFILE")
     wincent-strings-util --base "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" \
       --merge   "${LANGUAGE}/${STRINGSFILE}" \
-      --output  "$TMPDIR/$LANGUAGE/$STRINGSFILE" 2> /dev/null
-    if compare "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" "$TMPDIR/$LANGUAGE/$STRINGSFILE"; then
+      --output  "$TMPDIR/$BASE_LANGUAGE/$STRINGSFILE" 2> /dev/null
+    if compare "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" "$TMPDIR/$BASE_LANGUAGE/$STRINGSFILE"; then
       builtin echo "Merging $LANGUAGE/$STRINGSFILE"
       wincent-strings-util --base "$RESOURCE_DIR/${DEVLANGUAGE}.lproj/$STRINGSFILE" \
         --merge   "${LANGUAGE}/${STRINGSFILE}" \
@@ -101,4 +104,3 @@ for LANGUAGE in $(find "$RESOURCE_DIR" -name '*.lproj' -depth 1 -not -name "${DE
 done
 
 exit 0
-
