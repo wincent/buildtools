@@ -75,7 +75,7 @@ do
   if [ ! -f "${RESOURCES}/${LANGUAGE}/InfoPlist.strings" ]; then
     warn "${RESOURCES}/${LANGUAGE}/InfoPlist.strings does not exist"
   else
-    builtin echo "Prepocessing ${RESOURCES}/${LANGUAGE}/InfoPlist.strings"
+    builtin echo "Preprocessing ${RESOURCES}/${LANGUAGE}/InfoPlist.strings"
     "${GLOT}" --info    "${RESOURCES}/${PLIST_PATH}/Info.plist"       \
               --strings "${RESOURCES}/${LANGUAGE}/InfoPlist.strings"  \
               --output  "${RESOURCES}/${LANGUAGE}/InfoPlist.strings"
