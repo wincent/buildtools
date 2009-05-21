@@ -54,7 +54,7 @@ cd "${RESOURCES}"
 for LANGUAGE in $(find . -name "*.lproj" -maxdepth 1)
 do
   builtin echo "Preprocessing language: ${LANGUAGE}"
-  
+
   # kludge: Info.plist is stored in different places depending on the bundle type
   if [ "${WRAPPER_EXTENSION}" = "app" ]; then
     PLIST_PATH=".."
@@ -70,7 +70,7 @@ do
     err "unknown wrapper extension ${WRAPPER_EXTENSION}"
     exit 1
   fi
-  
+
   # wincent-strings-util will bail for non-existent merge files
   if [ ! -f "${RESOURCES}/${LANGUAGE}/InfoPlist.strings" ]; then
     warn "${RESOURCES}/${LANGUAGE}/InfoPlist.strings does not exist"
