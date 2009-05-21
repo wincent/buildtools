@@ -48,23 +48,23 @@ printusage()
 update_copyright_years()
 {
   builtin echo "Updating WO_COPYRIGHT_YEAR entry"
-  
+
   # get current year
   YEAR=$(date +%Y)
-  
+
   # in the line : #define WO_COPYRIGHT_YEAR ... update: "... XXXX ..."
   cat "${SOURCE_ROOT}/${WO_VERSION_FILE}" | sed \
     -e "/^#define[ ][ ]*WO_COPYRIGHT_YEAR[ ]/s/\(.*\)[0-9]\{4\}\([^\-]*\)/\1${YEAR}\2/" \
     > "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp"
-  
+
   if [ $? -eq 0 ]; then
-    
+
     # only copy the file if it's actually different
     if compare "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp" "${SOURCE_ROOT}/${WO_VERSION_FILE}"; then
       cp -fv "${SOURCE_ROOT}/${WO_VERSION_FILE}.temp" \
              "${SOURCE_ROOT}/${WO_VERSION_FILE}"
     fi
-    
+
   else
     err "non-zero exit status during copyright update"
     exit 1
@@ -73,7 +73,7 @@ update_copyright_years()
 
 #
 # Main
-# 
+#
 
 set -e
 
