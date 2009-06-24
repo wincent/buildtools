@@ -27,7 +27,7 @@
 SYMROOT                             = $(SRCROOT)/../../build
 OBJROOT                             = $(SRCROOT)/../../build-intermediates
 SHARED_PROJECTS_DIR                 = $(SYMROOT)/..
-BUILDTOOLS_DIR                      = $(SHARED_PROJECTS_DIR)/buildtools
+BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
 
 // for the Xcode UI define SDKROOT (not just the arch-specific variants)
 MACOSX_DEPLOYMENT_TARGET            = 10.5
