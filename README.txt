@@ -68,14 +68,14 @@ directory structure, including a shared built products directory and a shared
 build intermediates directory. The base layout used by Wincent consists of the
 following directories at the topmost level:
 
-build
-build-intermediates
+  build
+  build-intermediates
 
 Project folders also sit at the topmost level. Most Wincent products use the
 following layout for project folders:
 
-Project/src
-Project/extra
+  Project/src
+  Project/extra
 
 Files checked out from the repository (generally all those necessary to build
 the project) are stored in the "src" subdirectory. All other ancillary
@@ -85,19 +85,19 @@ stored in the "extra" subdirectory.
 The buildtools themselves are generally included in each project via the Git
 submodule mechanism, inside the "src" folder for the project:
 
-Project/src/buildtools
+  Project/src/buildtools
 
 This layout ensures that all projects have the same relative paths to the build
 and build-intermediates directories; that is, from the "src" directory of each
 project the relative paths are:
 
-../../build
-../../build-intermediates
+  ../../build
+  ../../build-intermediates
 
 In local development I store all of these top level files in the following
 location ("trabajo" is Spanish for "work"):
 
-~/trabajo
+  ~/trabajo
 
 This location is more or less arbitary and you could substitute it with any
 other.
