@@ -94,14 +94,6 @@ project the relative paths are:
   ../../build
   ../../build-intermediates
 
-In local development I store all of these top level files in the following
-location ("trabajo" is Spanish for "work"):
-
-  ~/trabajo
-
-This location is more or less arbitary and you could substitute it with any
-other.
-
 
 AUTHOR
 
