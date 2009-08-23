@@ -43,6 +43,11 @@ At the time of writing, there are three branches in the repository:
   - leopard: maintenance branch, unlikely to receive many updates after Snow
     Leopard is released
 
+As buildtools serves as support for other products, buildtools "releases" as
+such are never tagged. You will, however, find tags such as "Synergy-3.5a5"
+which are used to record which version of buildtools was used to build the
+other product.
+
 
 DONATIONS
 
