@@ -1,6 +1,3 @@
-$Id: README.txt 79 2007-07-16 14:10:46Z wincent $
-
-
 BUILDTOOLS INTRODUCTION
 
 The Wincent Buildtools (from here on referred to as "buildtools") is a collection of scripts, tools and configuration files used in the build processes of a number of Wincent products (for a full product listing see http://wincent.com/). buildtools is licensed under the GPL (see the file, LICENSE.txt).
