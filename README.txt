@@ -23,6 +23,27 @@ is also a separate project licensed under the GPL but there is no project
 website for it at the moment.
 
 
+SOURCE CODE REPOSITORY
+
+The official buildtools Git repository can be cloned using:
+
+  git clone git://git.wincent.com/buildtools.git
+
+A web-based repository browser can be explored at:
+
+  http://git.wincent.com/buildtools.git
+
+At the time of writing, there are three branches in the repository:
+
+  - master: cutting edge development corresponding to the latest version of Mac
+    OS X (currently Mac OS X 10.5 Leopard; once Mac OS X 10.6 Snow Leopard is
+    released in September 2009 development on the master branch will target the
+    new operating system instead)
+  - maint: stable development line, usually only a few commits behind "master"
+  - leopard: maintenance branch, unlikely to receive many updates after Snow
+    Leopard is released
+
+
 DONATIONS
 
 These buildtools are provided free of charge under the terms of the BSD
