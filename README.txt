@@ -3,8 +3,8 @@ BUILDTOOLS INTRODUCTION
 The Wincent Buildtools (from here on referred to as "buildtools") is a
 collection of scripts, tools and configuration files used in the build
 processes of a number of Wincent products (for a full product listing see
-http://wincent.com/). buildtools is licensed under the GPL (see the file,
-LICENSE.txt).
+http://wincent.com/). buildtools is licensed under the simplified BSD
+license (see the file, LICENSE.txt).
 
 I maintain these tools as a separate package for two reasons: firstly, because
 they allow frequently-used tools and configuration information to be stored in
@@ -38,7 +38,7 @@ Some of the included tools are:
 There are two non-standard executables that some buildtools scripts depend on
 (they expect to find them in the PATH), "wincent-strings-util" and
 "wincent-icon-util". The former, Wincent Strings Utility, is a separate
-project, also licensed under the GPL. More information can be obtained from the
+project, licensed under the GPL. More information can be obtained from the
 project website: http://strings.wincent.com/. The latter, Wincent Icon Utility,
 is also a separate project licensed under the GPL but there is no project
 website for it at the moment.
@@ -46,9 +46,9 @@ website for it at the moment.
 
 DONATIONS
 
-These buildtools are provided free of charge under the terms of the GPL. If
-they are useful to you please consider visiting the website and making a
-donation:
+These buildtools are provided free of charge under the terms of the BSD
+license. If they are useful to you please consider visiting the website and
+making a donation:
 
   http://wincent.com/a/products/buildtools/
 
