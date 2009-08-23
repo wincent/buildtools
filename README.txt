@@ -14,27 +14,6 @@ under the GPL (specifically, WOTest; see: http://test.wincent.com), so it made
 sense to release the toolset required to build the software under the same
 terms.
 
-Some of the included tools are:
-
-* CheckInputOutputFiles.sh: workaround for Xcode bug in which Input/Output file
-  checking in shell script build phases does not behave as documented
-* InstallFramework.sh: installs a framework in a shared location rather than
-  embedding it
-* InstallIBPalette.sh: installs an Interface Builder palette
-* PreprocessInfoPlistStrings.sh: for automated preprocessing of information
-  property list strings files
-* RunDoxygen.sh: a wrapper for Doxygen
-* SetCustomFolderIcon.sh: for setting custom icons on folders
-* Strip.sh: for stripping symbols from release builds, keeping an unstripped
-  copy for debugging
-* StripDSYM.sh: for stripping symbols from release builds, keeping a separate
-  dSYM file with debugging information
-* StripFrameworkSymbols.sh: for stripping symbols from a framework
-* UpdateBuildVersionNumbers.sh: for automatic updates of build number
-  information in a header file
-* UpdateStringsFiles.sh: a wrapper for genstrings(1) and Wincent Strings
-  Utility (see below)
-
 There are two non-standard executables that some buildtools scripts depend on
 (they expect to find them in the PATH), "wincent-strings-util" and
 "wincent-icon-util". The former, Wincent Strings Utility, is a separate
