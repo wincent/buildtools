@@ -60,19 +60,6 @@ scripts have been designed for use with Wincent projects and require a specific
 filesystem layout (as described below). Use with Wincent projects should be
 straightforward; use in other contexts may require modifications to be made.
 
-As an example, to build the latest version of the WOTest framework you would
-require the following directory layout:
-
-build
-build-intermediates
-buildtools
-WOTest/trunk
-
-WOTest expects to find buildtools at the relative path of "../../buildtools".
-Intermediate files should automatically be placed in the "build-intermediates"
-folder, and the built products should go in "build". Provided this directory
-layout is maintained no other configuration should be necessary.
-
 
 ABOUT THE FILESYSTEM LAYOUT
 
@@ -83,7 +70,6 @@ following directories at the topmost level:
 
 build
 build-intermediates
-buildtools
 
 Project folders also sit at the topmost level. Most Wincent products use the
 following layout for project folders:
@@ -96,11 +82,15 @@ the project) are stored in the "src" subdirectory. All other ancillary
 materials (generally nothing necessary to build the project), if any, are
 stored in the "extra" subdirectory.
 
-This layout ensures that all projects have the same relative paths to the
-buildtools, build and build-intermediates directories; that is, from the "src"
-directory of each project the relative paths are:
+The buildtools themselves are generally included in each project via the Git
+submodule mechanism, inside the "src" folder for the project:
 
-../../buildtools
+Project/src/buildtools
+
+This layout ensures that all projects have the same relative paths to the build
+and build-intermediates directories; that is, from the "src" directory of each
+project the relative paths are:
+
 ../../build
 ../../build-intermediates
 
