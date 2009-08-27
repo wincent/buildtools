@@ -33,6 +33,7 @@ BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
 MACOSX_DEPLOYMENT_TARGET            = 10.6
 SDKROOT                             = /Developer/SDKs/MacOSX10.6.sdk
 
+GCC_VERSION                         = com.apple.compilers.llvm.clang.1_0
 GCC_C_LANGUAGE_STANDARD             = gnu99
 GCC_ENABLE_OBJC_EXCEPTIONS          = YES
 GCC_ENABLE_CPP_EXCEPTIONS           = NO
