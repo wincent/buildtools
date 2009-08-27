@@ -26,8 +26,8 @@
 
 #include "base-style.xcconfig"
 
-// produce Universal Binaries by default
-ARCHS                           = ppc i386
+// don't produce Universal Binaries by default
+ARCHS                           = i386
 
 // Dead Code Stripping needs full symbols
 DEAD_CODE_STRIPPING             = YES

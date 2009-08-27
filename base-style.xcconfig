@@ -31,12 +31,7 @@ BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
 
 // for the Xcode UI define SDKROOT (not just the arch-specific variants)
 MACOSX_DEPLOYMENT_TARGET            = 10.5
-MACOSX_DEPLOYMENT_TARGET_i386       = 10.5
-MACOSX_DEPLOYMENT_TARGET_ppc        = 10.5
-
 SDKROOT                             = /Developer/SDKs/MacOSX10.5.sdk
-SDKROOT_i386                        = /Developer/SDKs/MacOSX10.5.sdk
-SDKROOT_ppc                         = /Developer/SDKs/MacOSX10.5.sdk
 
 GCC_C_LANGUAGE_STANDARD             = gnu99
 GCC_ENABLE_OBJC_EXCEPTIONS          = YES
@@ -44,11 +39,7 @@ GCC_ENABLE_CPP_EXCEPTIONS           = NO
 GCC_ENABLE_CPP_RTTI                 = NO
 GCC_PRECOMPILE_PREFIX_HEADER        = YES
 
-WARNING_CFLAGS                      = $(WARNING_CFLAGS_$(CURRENT_ARCH))
-WARNING_CFLAGS_ppc                  = -Wall -Wextra -Wno-unused-parameter
-
-// i386 compiler is more sensitive and can issue spurious "might be clobbered" if we pass "-Wextra" here
-WARNING_CFLAGS_i386                 = -Wall -Wno-unused-parameter
+WARNING_CFLAGS                      = -Wall -Wno-unused-parameter
 
 INFOPLIST_PREPROCESS                = YES
 INFOPLIST_PREPROCESSOR_DEFINITIONS  = WO_PREPROCESSING_FOR_INFO_PLIST

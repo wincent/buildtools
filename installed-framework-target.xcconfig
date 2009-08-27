@@ -36,5 +36,3 @@ DSTROOT               = /
 // build for native arch only
 ARCHS                 = $(NATIVE_ARCH)
 SDKROOT               =
-SDKROOT_i386          =
-SDKROOT_ppc           =
