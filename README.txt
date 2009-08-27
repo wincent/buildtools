@@ -36,12 +36,9 @@ A web-based repository browser can be explored at:
 At the time of writing, there are three branches in the repository:
 
   - master: cutting edge development corresponding to the latest version of Mac
-    OS X (currently Mac OS X 10.5 Leopard; once Mac OS X 10.6 Snow Leopard is
-    released in September 2009 development on the master branch will target the
-    new operating system instead)
+    OS X (currently Mac OS X 10.6 Snow Leopard)
   - maint: stable development line, usually only a few commits behind "master"
-  - leopard: maintenance branch, unlikely to receive many updates after Snow
-    Leopard is released
+  - leopard: maintenance branch, unlikely to receive many updates
 
 As buildtools serves as support for other products, buildtools "releases" as
 such are never tagged. You will, however, find tags such as "Synergy-3.5a5"
