@@ -30,8 +30,8 @@ SHARED_PROJECTS_DIR                 = $(SYMROOT)/..
 BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
 
 // for the Xcode UI define SDKROOT (not just the arch-specific variants)
-MACOSX_DEPLOYMENT_TARGET            = 10.5
-SDKROOT                             = /Developer/SDKs/MacOSX10.5.sdk
+MACOSX_DEPLOYMENT_TARGET            = 10.6
+SDKROOT                             = /Developer/SDKs/MacOSX10.6.sdk
 
 GCC_C_LANGUAGE_STANDARD             = gnu99
 GCC_ENABLE_OBJC_EXCEPTIONS          = YES
