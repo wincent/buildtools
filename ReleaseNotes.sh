@@ -86,7 +86,11 @@ else
   if [ -n "$AHEAD" ]; then
     PREV_TAG=$ABBREV_TAG
   else
-    PREV_TAG=$(git describe HEAD^ --abbrev=0)
+    PREV_TAG=$(git describe HEAD^ --abbrev=0 2> /dev/null || true)
+    if [ -z "$PREV_TAG" ]; then
+      # no previous tags; use (first) root commit
+      PREV_TAG=$(git rev-list HEAD | tail -n 1)
+    fi
   fi
 fi
 
