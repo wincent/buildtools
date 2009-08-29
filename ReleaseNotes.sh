@@ -62,19 +62,31 @@ do
   shift
 done
 
+# find out if we are at a tag or somewhere ahead of one
+# BUG: git describe will bail here with 128 exit status if no annotated tags in repo
+TAG=$(git describe)
+ABBREV_TAG=$(git describe --abbrev=0)
+if [ "$TAG" = "$ABBREV_TAG" ]; then
+  # currently at a tag
+  AHEAD=''
+else
+  # somewhere ahead of a tag
+  AHEAD='true'
+fi
+
 if [ -n "$TAG_PREFIX" ]; then
-  TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 1)
-  PREV_TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 2 | head -1)
+  if [ -n "$AHEAD" ]; then
+    PREV_TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 1)
+  else
+    TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 1)
+    PREV_TAG=$(git tag -l "$TAG_PREFIX*" | tail -n 2 | head -1)
+  fi
 else
   # no explict tag prefix
-  TAG=$(git describe)
-  ABBREV_TAG=$(git describe --abbrev=0)
-  if [ "$TAG" = "$ABBREV_TAG" ]; then
-    # currently at a tag
-    PREV_TAG=$(git describe HEAD^ --abbrev=0)
-  else
-    # somewhere ahead of a tag
+  if [ -n "$AHEAD" ]; then
     PREV_TAG=$ABBREV_TAG
+  else
+    PREV_TAG=$(git describe HEAD^ --abbrev=0)
   fi
 fi
 
