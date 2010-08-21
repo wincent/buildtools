@@ -1,4 +1,4 @@
-## settings.tmpl
+## settings.txt
 ## A template for application-wide default settings
 ## buildtools help templates
 ##
