@@ -53,4 +53,3 @@ para 2 of the task box
 ## To bypass WalrusCloth, override body_content block instead of content block
 ###def body_content
 ###end
-

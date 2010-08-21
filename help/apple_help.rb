@@ -30,11 +30,8 @@ require 'walrus/contrib/walruscloth'
 require 'erb'
 
 module Walrus
-
   class WalrusGrammar
-
     class AppleHelp < Document
-
       include ERB::Util
 
       # Returns true if the WALRUS_STYLE environment variable is set to 'web'
@@ -219,9 +216,6 @@ module Walrus
         tag = get_value(:tag)
         (tag != '') ? %Q{<a name="#{html_escape tag}"></a>\n} : ''
       end
-
     end # class AppleHelp
-
   end # class WalrusGrammar
-
 end # module Walrus
