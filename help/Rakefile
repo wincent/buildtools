@@ -1,6 +1,12 @@
 templates = Dir['**/*.tmpl']
 compiled  = templates.map { |template| template.ext 'rb' }
 
+# augment a couple of special files (these have an additional
+# dependency on settings.tmpl)
+file 'autogen/master_generated_list.rb' => ['autogen/master_generated_list.tmpl', 'settings.tmpl']
+file 'help.rb' => ['help.tmpl', 'settings.tmpl']
+
+# synthesized file tasks
 rule '.rb' => '.tmpl' do |t|
   sh "walrus compile --verbose --no-backup #{t.source}"
 end
