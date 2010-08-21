@@ -1,0 +1,23 @@
+## Created by Wincent Colaiuta on 11 April 2007.
+## Copyright 2007-2008 Wincent Colaiuta
+
+#extends '../../../WOCommon/help/master_full_index'
+
+#def setup
+  #include '../settings.txt'
+  #super
+#end
+
+###############################################################################
+
+#def main_box
+
+  ## index items will appear in the order that they are added
+  ## to auto-update this list run ../../WOCommon/help/index_grep.rb  from the help directory
+
+  $index_item($link_to_category('a_cat', 'text for category link'))
+  $index_item($link_to('a_page', 'text for page link'))
+
+  #super
+#end
+

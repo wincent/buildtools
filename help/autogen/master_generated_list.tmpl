@@ -1,0 +1,45 @@
+##
+## generated_list.tmpl
+## A template for auto-generated lists (created by Apple Help application)
+## WOCommon help templates
+##
+## Created by Wincent Colaiuta on 15 October 2006.
+## Copyright 2006-2008 Wincent Colaiuta.
+
+##
+
+#extends '../apple_help'
+#include '../settings.tmpl'
+
+#block setup
+## to be overridden by subclasses
+#end
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/sgml/loosedtd.html">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>AppleTopicListOther</title>
+    <meta name="robots" content="noindex">
+    <link href="AppleTopicListCSS" rel="stylesheet" media="all">
+  </head>
+  <body>
+    <div id="banner">
+      <div id="home_link">
+        $link_to('front_page', $book_id)
+      </div>
+      <div id="index_link">
+        $link_to('full_index', 'Index')
+      </div>
+    </div>
+    <div id="main_box">
+      ## Unfortunately can't have an icon in a generated list (relative paths don't work)
+      <div id="page_title">
+        <h1>AppleTopicListOther</h1>
+      </div>
+      <p>Click a topic below:</p>
+      <!-- AppleTopicListRowBegin -->
+      <p><a href="AppleTopicListURL">AppleTopicListItemTitle</a></p>
+      <!-- AppleTopicListRowEnd -->
+    </div>
+  </body>
+</html>

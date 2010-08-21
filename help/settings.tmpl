@@ -1,0 +1,34 @@
+##
+## settings.tmpl
+## "header" file containing default settings
+## WOCommon help templates
+##
+## Created by Wincent Colaiuta on 11 October 2006.
+## Copyright 2006-2008 Wincent Colaiuta
+
+## This file contains default settings which should apply to the entire help book.
+## All these settings are compulsory; any unset value will cause an error at runtime.
+## Instance variables are used instead of standard placeholders so that we can test for nil.
+
+## This is the localized name of the book.
+## Help Viewer does not require spaces to be URL encoded.
+## Any characters with special meaning in HTML are automatically converted to HTML entities at runtime.
+## Example: 'Hextrapolate Help'
+## Example: 'Ayuda de Hextrapolate'
+#set $book_id = 'Application Help'
+
+## This is the path to a 16 by 16 icon graphic, beginning with the name of help book folder.
+## Help Viewer does require any spaces in the path to be URL encoded, but this is handled automatically at runtime.
+## Any characters with special meaning in HTML are automatically converted to HTML entities at runtime.
+## Example: 'Hextrapolate Help/gfx/icon16.png' (automatically converted at runtime to 'Hextrapolate%20Help/gfx/icon16.png')
+#set $book_icon = 'Application Help/gfx/icon16.png'
+
+## This is the page title.
+## An application-wide default should be set, and each page should override it with a more specific title.
+## Help Viewer does not require spaces to be URL encoded.
+## Any characters with special meaning in HTML are automatically converted to HTML entities at runtime.
+## Note that for convenience a "set_page_title" method is provided so that per-page titles can be set using conventional placeholder syntax
+## (no need to directly manipulate instance variables).
+## Example: 'Hextrapolate Help' (application-wide default)
+## Example: 'Getting started with Hextrapolate' (page-specific override)
+#set $page_title = 'Application Help'

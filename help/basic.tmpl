@@ -1,0 +1,64 @@
+## basic.tmpl
+## A template for a single, basic help issue
+## WOCommon help templates
+##
+## Created by Wincent Colaiuta on 11 October 2006.
+## Copyright 2006-2008 Wincent Colaiuta
+
+#extends 'help'
+
+#def meta
+  #super
+  $keyword_meta
+  $abstract
+#end
+
+#def css
+  ## we assume that all basic pages are in a "pages" subdirectory
+  <link href="../css/base.css" rel="stylesheet" media="all" type="text/css">
+#end
+
+#def body
+  #block banner
+    <div id="banner">
+      <div id="home_link">
+         $link_to('front_page', $book_id)
+      </div>
+      <div id="index_link">
+        $link_to('full_index', 'Index')
+      </div>
+    </div>
+  #end
+  #block main_box
+    <div id="main_box">
+      #block header
+        <div id="icon">
+          <img width="32" height="32" alt="Icon" src="../gfx/icon32.png">
+        </div>
+        <div id="page_title">
+          <h1>$page_title</h1>
+        </div>
+      #end
+
+      #block body_content
+        ## all material in the #content block will be piped through WalrusCloth
+        ## subclass should override this method if that's not desired
+        ## otherwise just override the content block
+        $cloth($content)
+      #end
+
+      ## shows the "See also" list if and only if items were added to it
+      ## using "see_also" method
+      ##
+      $see_also_list
+
+    </div>
+  #end
+#end
+
+#def see_also_div(content)
+  <div id="see_also">
+    <h2>See also</h2>
+    #echo content
+  </div>
+#end

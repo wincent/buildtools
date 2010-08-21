@@ -1,0 +1,30 @@
+## master_full_index.tmpl
+## Superclass for full index template
+## WOCommon help templates
+##
+## Created by Wincent Colaiuta on 12 April 2007.
+## Copyright 2007-2008 Wincent Colaiuta
+
+#extends 'basic'
+
+#def setup
+  #set $page_title  = 'Index'
+  #set $tag         = 'full_index'
+#end
+
+#def meta
+  <meta name="robots" content="anchors">
+#end
+
+###############################################################################
+
+#def main_box
+<div id="index_banner">
+  $header
+</div>
+<div id="terms">
+  <table summary="Index table" width="100%" border="0" cellspacing="0" cellpadding="0">
+    $index_rows
+  </table>
+</div>
+#end

@@ -1,0 +1,167 @@
+INHERITANCE HIERARCHY
+
+                          apple_help.rb
+         [abstract Ruby superclass, provides helper methods]
+                                |
+                            help.tmpl
+      [abstract Walrus superclass, describes overall page layout]
+                                |
+       /------------------------+-----------------------\
+       |                                                |
+front_page.tmpl                                         |
+[first page user sees]                                  |
+       |                                           basic.tmpl
+example_front_page.tmpl                  [adds basic banner to HTML body]
+[editable starting point]                               |
+                                                        |
+                  /-------------------------------------+-------------------------------\
+                  |                                     |                               |
+              discover.tmpl                     example_task.tmpl                    example_basic.tmpl
+            [not yet implemented]   [step-by-step task, editable starting point]   [editable starting point]
+                  |
+            example_discover.tmpl
+            [not yet written]
+
+
+
+SETTING UP YOUR APP TO INCLUDE HELP
+
+http://developer.apple.com/qa/qa2001/qa1022.html
+http://developer.apple.com/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/registering_help/chapter_4_section_3.html
+
+Three Info.plist keys need to be set:
+
+CFBundleIdentifier
+
+CFBundleHelpBookFolder - the name of your help book's folder (not localizeable).
+
+CFBundleHelpBookName - the name of the page to be shown on first launch (may be localized); this corresponds to the "AppleTitle" meta tag that appears on the front page; this is the same as the "book_id" which is used in links.
+
+WORK FLOW
+
+We maintain three separated folders for the purposes of clarity and also to stop Help Indexer from indexing source and template files:
+
+${SOURCE_ROOT}/en.lproj/(Application Help)/source
+${SOURCE_ROOT}/en.lproj/(Application Help)/compiled
+${SOURCE_ROOT}/en.lproj/(Application Help)/filled
+
+Inside the "filled" directory is the actual output folder, "Application Help", which Xcode can easily copy into the bundle at build time.
+
+1. Copy example templates into the "compiled" directory.
+
+The relative include paths assume that you are working as follows:
+
+${SOURCE_ROOT}/en.lproj/(Application Help)/compiled/(front_page template)
+${SOURCE_ROOT}/en.lproj/(Application Help)/compiled/pages/(other templates)
+${SOURCE_ROOT}/en.lproj/(Application Help)/compiled/autogen/(autogen templates)
+${SOURCE_ROOT}/en.lproj/(Application Help)/filled/(application help)/css/ (style sheets)
+${SOURCE_ROOT}/en.lproj/(Application Help)/filled/(application help)/gfx/ (graphics)
+${SOURCE_ROOT}/WOCommon/help/(master templates)
+
+That is:
+
+- the front page example template includes its parent as '../../../WOCommon/help/front_page'
+- the other templates includes their parents as '../../../../WOCommon/help/other_page'
+
+2. Compile
+
+# must do this from inside the "compiled" subdir for relative paths to be correctly
+# created inside the "compiled" dir
+cd compiled
+walrus compile -v *.tmpl autogen/*.tmpl pages/*.tmpl
+
+# or if you trust your SCM to save you from disasters:
+walrus compile -v --no-backup *.tmpl autogen/*.tmpl pages/*.tmpl
+
+
+And fill:
+
+walrus fill -v --no-backup -o ../Hextrapolate\ Help *.tmpl autogen/*.tmpl pages/*.tmpl
+
+In fact, you can skip the compilation step if you want because Walrus will perform that if needed.
+
+
+3. Copy (sym-links won't work) the two style sheets, base.css, front.css
+
+4. Create an autogen directory
+
+5. Copy the style sheet in autogen/generated_list.css to the local autogen directory
+
+6. The example example_generated_list.html.txt file is most likely good enough to use without customization; so stick that in your local autogen directory too
+
+Still have to decide auto-generated page workflow.
+
+UPDATING ALL TEMPLATES
+
+1. To compile all the templates in WOCommon/help (re-compiles templates even if they've already been compiled)
+
+cd WOCommon/help
+walrus compile autogen/*.tmpl *.tmpl
+
+Or if using SCM, the following is probably fine:
+
+walrus compile --no-backup autogen/*.tmpl *.tmpl
+
+2. To compile/fill templates in a project that uses the WOCommon/help templates:
+
+cd en.lproj/(application help folder)
+walrus compile *.tmpl autogen/*.tmpl pages/*.tmpl
+
+Once again, with SCM the following is probably fine
+walrus compile --no-backup *.tmpl autogen/*.tmpl pages/*.tmpl
+
+USAGE NOTES
+
+TODO: --filter option for walrus command-line tool to make piping through Tidy easier.
+
+PIPING OUTPUT THROUGH TIDY
+
+To fix using Tidy in place:
+
+tidy -utf8 -wrap 0 --fix-uri no --tidy-mark no -quiet -o file.html file.html
+
+Or:
+
+find . -name "*.html" -exec tidy -utf8 -wrap 0 --fix-uri no --tidy-mark no -quiet -o {} {} \;
+
+The Walrus HTML output can be piped through Tidy in order to normalize white space and indentation. For example, running a compiled template and piping through Tidy:
+
+./example_front_page.rb | tidy -utf8 -wrap 0 --fix-uri no --tidy-mark no -quiet
+
+"-wrap 0" turns wrapping off entirely.
+
+"--tidy-mark no" stops Tidy from adding a "generator" meta tag.
+
+"-quiet" turns off non-essential output (supplemental information) although warnings will still go to the standard error.
+
+The "-utf8" option is necessary to address this warning:
+
+line 1 column 1 - Warning: specified input encoding (iso-8859-1) does not match actual input encoding (utf-8)
+
+Likewise "--fix-uri no" is required because otherwise this will be emitted:
+
+line 52 column 8 - Warning: <a> escaping malformed URI reference
+
+And this will be output:
+
+<p><a href="help:anchor='contents_overview'%20bookID=Hextrapolate%20Help">Look up topics easily</a></p>
+
+Instead of this (in keeping with Apple's own conventions for these non-standard URIs):
+
+<p><a href="help:anchor='contents_overview' bookID=Hextrapolate Help">Look up topics easily</a></p>
+
+Although with "--fix-uri no" in place you'll still see this warning:
+
+line 56 column 8 - Warning: <a> improperly escaped URI reference
+
+To show list of all available options:
+
+  tidy -help-config
+
+To show current options:
+
+  tidy -show-config
+
+Showing options with overrides in effect:
+
+  tidy -utf8 -wrap 0 --fix-uri no -indent --tidy-mark no -show-config

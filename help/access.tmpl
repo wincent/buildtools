@@ -1,0 +1,66 @@
+## access.tmpl
+## A template for the front page
+## WOCommon help templates
+##
+## Created by Wincent Colaiuta on 11 October 2006.
+## Copyright 2006-2008 Wincent Colaiuta
+
+#extends 'help'
+
+#def setup
+  #set $tag = 'front_page'
+#end
+
+#def meta
+  #super
+  <meta name="AppleTitle" content="$book_id">
+  <meta name="AppleIcon" content="$book_icon">
+  <meta name="robots" content="anchors">
+#end
+
+#def css
+  <link href="css/front.css" rel="stylesheet" media="all" type="text/css">
+#end
+
+#def body
+  <div id="banner">
+    <div id="index_link">
+      $link_to('full_index', 'Index')
+    </div>
+  </div>
+  <div id="frame">
+    <div id="inner_frame">
+      <div id="content_left">
+        $left
+      </div>
+      <div id="content_right">
+        $right
+      </div>
+    </div>
+  </div>
+#end
+
+#def splash_image
+  <h1><img class="icon" src="gfx/icon32.png" alt="Application icon" height="32" width="32" border="0">$book_id</h1>
+#end
+
+#def left
+  ## example content (must override)
+  $splash_image
+  <h2>$link_to('learn_about', 'Learn about Hextrapolate')</h2>
+  <p>Quickly convert numbers of unlimited size.</p>
+  <h2>$link_to('problems', 'Solving problems')</h2>
+  <p>Find the answers to common problems.</p>
+#end
+
+#def right
+  ## example content (must override)
+  <div id="access_box">
+    <h2>Featured topics</h2>
+    <p>$link_to('a_topic', 'Check out this great new features')</p>
+    <p>$link_to('another_one', 'And then see this one')</p>
+    <hr />
+    <p>$link_to('full_index', 'Index')</p>
+    <h3><a href="http://wincent.com/">wincent.com</a></h3>
+  </div>
+#end
