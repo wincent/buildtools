@@ -56,12 +56,12 @@ ${SOURCE_ROOT}/en.lproj/(Application Help)/compiled/pages/(other templates)
 ${SOURCE_ROOT}/en.lproj/(Application Help)/compiled/autogen/(autogen templates)
 ${SOURCE_ROOT}/en.lproj/(Application Help)/filled/(application help)/css/ (style sheets)
 ${SOURCE_ROOT}/en.lproj/(Application Help)/filled/(application help)/gfx/ (graphics)
-${SOURCE_ROOT}/WOCommon/help/(master templates)
+${SOURCE_ROOT}/buildtools/help/(master templates)
 
 That is:
 
-- the front page example template includes its parent as '../../../WOCommon/help/front_page'
-- the other templates includes their parents as '../../../../WOCommon/help/other_page'
+- the front page example template includes its parent as '../../../buildtools/help/front_page'
+- the other templates includes their parents as '../../../../buildtools/help/other_page'
 
 2. Compile
 
@@ -93,16 +93,16 @@ Still have to decide auto-generated page workflow.
 
 UPDATING ALL TEMPLATES
 
-1. To compile all the templates in WOCommon/help (re-compiles templates even if they've already been compiled)
+1. To compile all the templates in buildtools/help (re-compiles templates even if they've already been compiled)
 
-cd WOCommon/help
+cd buildtools/help
 walrus compile autogen/*.tmpl *.tmpl
 
 Or if using SCM, the following is probably fine:
 
 walrus compile --no-backup autogen/*.tmpl *.tmpl
 
-2. To compile/fill templates in a project that uses the WOCommon/help templates:
+2. To compile/fill templates in a project that uses the buildtools/help templates:
 
 cd en.lproj/(application help folder)
 walrus compile *.tmpl autogen/*.tmpl pages/*.tmpl
