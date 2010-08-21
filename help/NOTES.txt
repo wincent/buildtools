@@ -93,22 +93,32 @@ Still have to decide auto-generated page workflow.
 
 UPDATING ALL TEMPLATES
 
-1. To compile all the templates in buildtools/help (re-compiles templates even if they've already been compiled)
+1. Compile all the templates in buildtools/help
 
-cd buildtools/help
-walrus compile autogen/*.tmpl *.tmpl
+  cd buildtools/help
+
+This re-compiles templates even if they've already been compiled:
+
+  walrus compile --verbose autogen/*.tmpl *.tmpl
 
 Or if using SCM, the following is probably fine:
 
-walrus compile --no-backup autogen/*.tmpl *.tmpl
+  walrus compile --verbose --no-backup autogen/*.tmpl *.tmpl
 
-2. To compile/fill templates in a project that uses the buildtools/help templates:
+As a convenience, a Rakefile is provided that will only re-compile templates
+if they are newer than the output file:
 
-cd en.lproj/(application help folder)
-walrus compile *.tmpl autogen/*.tmpl pages/*.tmpl
+  rake compile
+
+2. Compile/fill templates in the project that uses the buildtools help
+   templates:
+
+  cd en.lproj/(application help folder)
+  walrus compile *.tmpl autogen/*.tmpl pages/*.tmpl
 
 Once again, with SCM the following is probably fine
-walrus compile --no-backup *.tmpl autogen/*.tmpl pages/*.tmpl
+
+  walrus compile --no-backup *.tmpl autogen/*.tmpl pages/*.tmpl
 
 USAGE NOTES
 
