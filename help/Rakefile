@@ -1,11 +1,8 @@
 templates = Dir['**/*.tmpl']
 compiled  = templates.map { |template| template.ext 'rb' }
 
-compiled.each do |output|
-  template = output.ext('tmpl')
-  file output => template do |t|
-    sh "walrus compile --verbose --no-backup #{template}"
-  end
+rule '.rb' => '.tmpl' do |t|
+  sh "walrus compile --verbose --no-backup #{t.source}"
 end
 
 desc 'Compile Walrus template files'
