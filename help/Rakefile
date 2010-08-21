@@ -1,3 +1,5 @@
+task :default => :compile
+
 templates = Dir['**/*.tmpl']
 compiled  = templates.map { |template| template.ext 'rb' }
 
