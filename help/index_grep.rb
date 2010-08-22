@@ -35,7 +35,6 @@
 require 'pathname'
 
 class TemplateScanner
-
   def initialize
     @title_tag_pairs = {}
     process_directory(Pathname.getwd)
@@ -44,7 +43,6 @@ class TemplateScanner
     @title_tag_pairs.sort { |a, b| a[1][1..-2] <=> b[1][1..-2] }.each do |item|
       puts "$index_item($link_to(#{item[0]}, #{item[1]}))"
     end
-
   end
 
   def process_directory(dir)
@@ -65,7 +63,6 @@ class TemplateScanner
     tag = $~[1]
     @title_tag_pairs[tag] = page_title
   end
-
 end # class TemplateScanner
 
 if __FILE__ == $0
