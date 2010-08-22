@@ -22,18 +22,15 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-=begin
-
-This is a simple script that greps through all the files in the current working directory looking for strings which match:
-
-#set $page_title  = 'Force Quitting Hextrapolate'
-#set $tag         = 'force_quitting'
-
-And turning them into:
-
-$index_item($link_to('force_quitting', 'Force Quitting Hextrapolate'))
-
-=end
+# This is a simple script that greps through all the files in the current
+# working directory looking for strings which match:
+#
+#     #set $page_title  = 'Force Quitting Hextrapolate'
+#     #set $tag         = 'force_quitting'
+#
+# And turning them into:
+#
+#     $index_item($link_to('force_quitting', 'Force Quitting Hextrapolate'))
 
 require 'pathname'
 
