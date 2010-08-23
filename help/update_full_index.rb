@@ -45,8 +45,11 @@ File.open input_path do |input|
   end
 
   # copy remaining lines from old file to new file
-  while line = input.readline
-    output.puts line
+  begin
+    while line = input.readline
+      output.puts line
+    end
+  rescue EOFError
   end
 end
 
