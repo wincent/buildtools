@@ -1,3 +1,4 @@
 *.rb
 !apple_help.rb
 !index_grep.rb
+!update_full_index.rb
