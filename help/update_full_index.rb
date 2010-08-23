@@ -32,11 +32,12 @@ File.open input_path do |input|
   # read up to start marker, copying lines into output file
   while line = input.readline
     output.puts line
-    break if line =~ /\A\s*## -- index items start -- ##\s*\z/
+    break if line =~ /\A(\s*)## -- index items start -- ##\s*\z/
   end
+  indent = $~[1]
 
   # insert new index items
-  $stdin.each_line { |line| output.puts line }
+  $stdin.each_line { |line| output.puts "#{indent}#{line}" }
 
   # skip over old index items
   while line = input.readline
