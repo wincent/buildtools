@@ -47,20 +47,16 @@
         $page_title
       #end
     </title>
-    <meta name="author" content="Wincent Colaiuta">
-    <meta name="author-email" content="win@wincent.com">
-    <meta name="copyright" content="Copyright 2007-2008 Wincent Colaiuta">
-
-    #block css
-      <link href="css/base.css" rel="stylesheet" media="all" type="text/css">
-    #end
-
+    <meta name="author" content="$author">
+    <meta name="author-email" content="$author_email">
+    <meta name="copyright" content="$copyright">
     #block meta
       ## other, optional meta tags go here
     #end
-
+    #block css
+      <link href="css/base.css" rel="stylesheet" media="all" type="text/css">
+    #end
   </head>
-
   <body>
     $tag
     $categories
@@ -68,5 +64,4 @@
       $cloth($content)
     #end
   </body>
-
 </html>

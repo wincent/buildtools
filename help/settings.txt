@@ -51,3 +51,7 @@
 ## Example: 'Hextrapolate Help' (application-wide default)
 ## Example: 'Getting started with Hextrapolate' (page-specific override)
 #set $page_title = 'Application Help'
+
+#set $author        = 'Wincent Colaiuta'
+#set $author_email  = 'win@wincent.com'
+#set $copyright     = 'Copyright 2007-2010 Wincent Coliauta'
