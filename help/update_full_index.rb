@@ -24,8 +24,8 @@
 
 require 'fileutils'
 
-input_path  = 'pages/full_index.tmpl'
-output_path = 'pages/full_index.tmpl.new'
+input_path  = 'pages/full_index.html.tmpl'
+output_path = 'pages/full_index.html.tmpl.new'
 output      = File.new output_path, 'w'
 
 File.open input_path do |input|
