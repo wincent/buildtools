@@ -9,8 +9,6 @@
   ##$see_also($link_to_category('base2', 'other text'))
 #end
 
-###############################################################################
-
 #def content
 
 This is the body content, done with Textile-like formatting.
