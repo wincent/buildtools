@@ -17,7 +17,7 @@
   <h2>Learn about Hextrapolate</h2>
   <p>$link_to('learn_about', 'Quickly convert numbers of unlimited size')</p>
   <h2>Solving problems</h2>
-  <p>$link_to('problems', 'Find the answers to common problems.')</p>
+  <p>$link_to('troubleshooting_tips', 'Find the answers to common problems.')</p>
   <h2>Index</h2>
-  <p>$link_to('contents_overview', 'Look up topics easily')</p>
+  <p>$link_to('full_index', 'Look up topics easily')</p>
 #end
