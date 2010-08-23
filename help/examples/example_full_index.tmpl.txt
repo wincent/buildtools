@@ -28,15 +28,34 @@
   #super
 #end
 
-###############################################################################
-
 #def main_box
+  ## Index items will appear in the order that they are added.
+  ## As an alternative to editing this file by hand, there are two helper
+  ## scripts that can be run from inside the application help directory:
+  ##
+  ##    ../../buildtools/help/index_grep.rb:
+  ##
+  ##          Greps through the help directory looking for suitable
+  ##          directives and emits a list of "index_item" links to standard
+  ##          out. To be detected the directives should be of the form:
+  ##
+  ##                #set $page_title = 'Super title'
+  ##                #set $tag        = 'super_title'
+  ##
+  ##          and will yield "index_item" links like:
+  ##
+  ##                $index_item($link_to('super_title', 'Super title'))
+  ##
+  ##    ../../buildtools/help/update_full_index.rb:
+  ##
+  ##          Takes the output of the index_grep.rb script and inserts it into
+  ##          the file at page/full_index.tmpl inside the application help
+  ##          directory, replacing any existing text between the start and end
+  ##          markers
 
-  ## index items will appear in the order that they are added
-  ## to auto-update this list run ../../buildtools/help/index_grep.rb from the help directory
-
-  $index_item($link_to_category('a_cat', 'text for category link'))
+  ## -- index items start -- ##
   $index_item($link_to('a_page', 'text for page link'))
+  ## -- index items end -- ##
 
   #super
 #end
