@@ -56,4 +56,3 @@ File.open input_path do |input|
 end
 
 FileUtils.mv output_path, input_path
-FileUtils.rm output_path
