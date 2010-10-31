@@ -1,7 +1,7 @@
 // release-style.xcconfig
 // Settings for project-level "Release" build style
 //
-// Copyright 2006-2009 Wincent Colaiuta. All rights reserved.
+// Copyright 2006-2010 Wincent Colaiuta. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -26,8 +26,8 @@
 
 #include "base-style.xcconfig"
 
-// don't produce Universal Binaries by default
-ARCHS                           = i386
+// target 64-bit in order to use the modern Objective-C runtime
+ARCHS                           = $(ARCHS_STANDARD_64_BIT)
 
 // Dead Code Stripping needs full symbols
 DEAD_CODE_STRIPPING             = YES
