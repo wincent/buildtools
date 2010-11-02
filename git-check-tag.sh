@@ -39,8 +39,10 @@ git rev-parse --is-inside-work-tree 1> /dev/null 2>&1 || die 'not inside a Git r
 git rev-list -n 1 HEAD 1> /dev/null 2>&1 || die 'no commits in repository'
 
 # find out if we are at a tag or somewhere ahead of one
-TAG=$(git describe 2> /dev/null || true)
+TAG=$(git describe 2> /dev/null || git rev-parse --short HEAD)
 ABBREV_TAG=$(git describe --abbrev=0 2> /dev/null || true)
-if [ -z "$TAG" -o "$TAG" != "$ABBREV_TAG" ]; then
+if [ -z "$ABBREV_TAG" -o "$TAG" != "$ABBREV_TAG" ]; then
   warn 'current HEAD is not tagged/annotated, but it should be for official releases'
 fi
+
+echo $TAG
