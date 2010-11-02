@@ -38,16 +38,16 @@ fi
 # bail early if not inside a Git repo
 git rev-parse --is-inside-work-tree 1> /dev/null 2>&1 || die 'not inside a Git repository'
 
+# will fall back to root and HEAD commits if no annotated tags in repo yet
+ROOT_COMMIT=$(git rev-list HEAD 2> /dev/null | tail -n 1) || die 'no root commit'
+HEAD=$(git rev-parse --short HEAD)
+TAG=$(git describe 2> /dev/null) || TAG=$HEAD
+
 # find out if we are at a tag or somewhere ahead of one
-TAG=$(git describe) || die 'no annotated tags in repo'
-ABBREV_TAG=$(git describe --abbrev=0)
+ABBREV_TAG=$(git describe --abbrev=0 2> /dev/null) || TAG=$HEAD
 if [ "$TAG" = "$ABBREV_TAG" ]; then
-  # currently at a tag
-  PREV_TAG=$(git describe HEAD^ --abbrev=0 2> /dev/null || true)
-  if [ -z "$PREV_TAG" ]; then
-    # no previous tags; use (first) root commit
-    PREV_TAG=$(git rev-list HEAD | tail -n 1)
-  fi
+  # currently at a tag, or no tags in the repo
+  PREV_TAG=$(git describe HEAD^ --abbrev=0 2> /dev/null) || PREV_TAG=$ROOT_COMMIT
 else
   # somewhere ahead of a tag
   PREV_TAG=$ABBREV_TAG
