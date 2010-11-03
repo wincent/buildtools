@@ -26,7 +26,6 @@
 
 SYMROOT                             = $(SRCROOT)/../../build
 OBJROOT                             = $(SYMROOT)
-SHARED_PROJECTS_DIR                 = $(SYMROOT)/..
 
 // buildtools is usually installed as a Git submodule within the SRCROOT
 BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
