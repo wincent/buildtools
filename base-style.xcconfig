@@ -24,7 +24,10 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+// "Build Products Path"
 SYMROOT                             = $(SRCROOT)/../../build
+
+// "Intermediate Build Files Path"
 OBJROOT                             = $(SYMROOT)
 
 // buildtools is usually installed as a Git submodule within the SRCROOT
