@@ -26,9 +26,6 @@
 
 #include "base-style.xcconfig"
 
-// target 64-bit in order to use the modern Objective-C runtime
-ARCHS                           = $(ARCHS_STANDARD_64_BIT)
-
 // Dead Code Stripping needs full symbols
 DEAD_CODE_STRIPPING             = YES
 GCC_GENERATE_DEBUGGING_SYMBOLS  = YES

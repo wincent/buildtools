@@ -1,7 +1,7 @@
 // base-style.xcconfig
 // Settings common to all build styles
 //
-// Copyright 2006-2009 Wincent Colaiuta. All rights reserved.
+// Copyright 2006-2010 Wincent Colaiuta. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -83,6 +83,9 @@ GCC_ENABLE_SYMBOL_SEPARATION        = NO
 
 // don't use dwarf-with-dsym: invoke dsymutil manually before stripping rather than letting Xcode do it (tries after stripping and fails)
 DEBUG_INFORMATION_FORMAT            = dwarf
+
+// target 64-bit in order to use the modern Objective-C runtime
+ARCHS                               = $(ARCHS_STANDARD_64_BIT)
 
 // new setting for Leopard-only builds (previously buildtools was used as far back as Panther)
 GCC_FAST_OBJC_DISPATCH              = YES
