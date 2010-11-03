@@ -70,8 +70,6 @@ ALWAYS_SEARCH_USER_PATHS            = NO
 // prevents custom icons from getting stripped as items are being copied to the bundle
 COPYING_PRESERVES_HFS_DATA          = YES
 
-DSTROOT                             = $(TARGET_BUILD_DIR)/DSTROOT
-
 // for greater control, perform stripping using a script rather than letting the linker do it
 COPY_PHASE_STRIP                    = NO
 
