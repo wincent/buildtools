@@ -25,7 +25,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 SYMROOT                             = $(SRCROOT)/../../build
-OBJROOT                             = $(SRCROOT)/../../build-intermediates
+OBJROOT                             = $(SYMROOT)
 SHARED_PROJECTS_DIR                 = $(SYMROOT)/..
 BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
 
