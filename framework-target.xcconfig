@@ -26,5 +26,5 @@
 
 MACH_O_TYPE                 = mh_dylib
 WRAPPER_EXTENSION           = framework
-
 PUBLIC_HEADERS_FOLDER_PATH  = $(FULL_PRODUCT_NAME)/Versions/$(FRAMEWORK_VERSION)/Headers/
+LD_DYLIB_INSTALL_NAME       = @executable_path/../Frameworks/$(EXECUTABLE_PATH)
