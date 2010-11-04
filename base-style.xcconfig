@@ -62,7 +62,7 @@
 // This lax policy will be appropriate a lot of the time for general
 // development. A stricter policy is needed when packaging full-blown
 // products for release, when the component pieces are being marketed as
-// whole which supposedly works together; in this scenario, we stick to
+// a whole which supposedly works together; in this scenario, we stick to
 // the superproject-plus-submodules approach in order to have total
 // control.
 //
