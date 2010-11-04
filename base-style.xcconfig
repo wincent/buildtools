@@ -24,14 +24,74 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-// "Build Products Path"
-SYMROOT                             = $(SRCROOT)/../../build
+// The SYMROOT ("Build Products Path") is stored above the SRCROOT so that
+// multiple projects can share build products. For example, a framework can
+// be built into the shared build location, and an application can then link
+// against it.
+//
+// A complex application consisting of many components should be structured
+// using Git submodules as follows:
+//
+//   ~/code/big-application                         <-- top level of the superproject repository
+//   ~/code/big-application/src                     <-- SRCROOT, main application source here
+//   ~/code/big-application/src/buildtools          <-- submodule
+//   ~/code/big-application/framework-1             <-- submodule
+//   ~/code/big-application/framework-1/buildtools  <-- submodule
+//   ~/code/big-application/framework-2             <---submodule
+//   ~/code/big-application/plug-in-1               <-- submodule
+//   ~/code/big-application/plug-in-2               <-- submodule
+//   ~/code/big-application/build                   <-- ignored via .gitignore
+//
+// In general each of the components should be buildable separately, although
+// they may depend on one or more other components. For example, just say
+// "plug-in-1" above is actually a re-usable component and it may be used
+// in many projects, not just "big-application". It may be desirable to
+// build it in isolation. Imagine that it depends on "framework-1". In this
+// case, we'll have a directory structure like:
+//
+//   ~/code/framework-1   <-- top level of repository
+//   ~/code/plug-in-1     <-- top level of another repository
+//   ~/code/build         <-- shared build products
+//
+// Note that in this second example, the two repositories are not strictly
+// versioned in the way that submodules within a superproject are; it is
+// possible for them to move independently, and when "plug-in-1" is being
+// built it doesn't know or control which version of "framework-1" is
+// checked out.
+//
+// This lax policy will be appropriate a lot of the time for general
+// development. A stricter policy is needed when packaging full-blown
+// products for release, when the component pieces are being marketed as
+// whole which supposedly works together; in this scenario, we stick to
+// the superproject-plus-submodules approach in order to have total
+// control.
+//
+// Note also that in all of the examples, the location of the project folders
+// under "~/code/" is arbitrary; the important thing is that projects
+// which must be built together are peers, at the same level as one another
+// and with each one having "../build" as the relative path to the shared
+// build products folder.
+SYMROOT = $(SRCROOT)/../build
 
 // "Intermediate Build Files Path"
-OBJROOT                             = $(SYMROOT)
+//
+// Xcode generally groups intermediate files into a single folder per target,
+// so we can use the standard build products folder for this purpose without
+// creating excessive clutter.
+OBJROOT = $(SYMROOT)
 
-// buildtools is usually installed as a Git submodule within the SRCROOT
-BUILDTOOLS_DIR                      = $(SRCROOT)/buildtools
+// Buildtools is usually installed as a Git submodule within the SRCROOT.
+//
+// Note that in complex applications like the one described earlier, it is
+// possible for multiple components in a project to each have their own
+// copy of Buildtools via a submodule. The maintainer of the superproject
+// needs to ensure, via appropriate submodule control, that the each
+// component is using a version with compatible build settings.
+//
+// For example, it is likely that if one component moves from the Mac OS X
+// 10.6 SDK to the 10.7 SDK, that the others will probably have to move as
+// well.
+BUILDTOOLS_DIR = $(SRCROOT)/buildtools
 
 // for the Xcode UI define SDKROOT (not just the arch-specific variants)
 MACOSX_DEPLOYMENT_TARGET            = 10.6
