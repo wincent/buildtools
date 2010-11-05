@@ -104,6 +104,12 @@ GCC_ENABLE_CPP_EXCEPTIONS           = NO
 GCC_ENABLE_CPP_RTTI                 = NO
 GCC_PRECOMPILE_PREFIX_HEADER        = YES
 
+// these settings apply to both Debug and Release builds because:
+//   - debug builds need symbols for display in the debugger
+//   - release builds need symbols in order to perform dead code stripping
+GCC_GENERATE_DEBUGGING_SYMBOLS  = YES
+GCC_DEBUGGING_SYMBOLS           = full
+
 WARNING_CFLAGS                      = -Wall -Wno-unused-parameter
 
 INFOPLIST_PREPROCESS                = YES

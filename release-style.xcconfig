@@ -26,10 +26,7 @@
 
 #include "base-style.xcconfig"
 
-// Dead Code Stripping needs full symbols
 DEAD_CODE_STRIPPING             = YES
-GCC_GENERATE_DEBUGGING_SYMBOLS  = YES
-GCC_DEBUGGING_SYMBOLS           = full
 
 // necessary for stripping (will only actually install if DSTROOT is set to /)
 DEPLOYMENT_POSTPROCESSING       = YES
