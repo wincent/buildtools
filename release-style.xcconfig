@@ -46,10 +46,7 @@ STRIP_STYLE                     = all
 // symbol stripping results in huge executables; in those cases you must use
 // only one or the other
 
-// symbols are hidden by default unless explicitly marked otherwise
-GCC_SYMBOLS_PRIVATE_EXTERN      = YES
-
-// inlined functions are also hidden (strictly speaking, GCC_SYMBOLS_PRIVATE_EXTERN implies this setting also)
+// inlined functions are hidden
 GCC_INLINES_ARE_PRIVATE_EXTERN  = YES
 
 // setting this to YES leads to faster link times but means that atos can't extract line numbers
