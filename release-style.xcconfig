@@ -46,10 +46,6 @@ STRIP_STYLE                     = all
 // inlined functions are hidden
 GCC_INLINES_ARE_PRIVATE_EXTERN  = YES
 
-// setting this to YES leads to faster link times but means that atos can't extract line numbers
-// see xcode-users thread, "DWARF format and stripping": http://lists.apple.com/archives/Xcode-users/2006/May/msg00855.html
-ONLY_LINK_ESSENTIAL_SYMBOLS     = NO
-
 KEEP_PRIVATE_EXTERNS            = NO
 
 // NDEBUG turns off C assert
