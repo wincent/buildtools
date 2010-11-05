@@ -26,9 +26,6 @@
 
 #include "base-style.xcconfig"
 
-// Zero Link has been removed in Xcode 3.0
-ZERO_LINK                                         = NO
-
 DEAD_CODE_STRIPPING                               = NO
 GCC_OPTIMIZATION_LEVEL                            = 0
 GCC_ENABLE_FIX_AND_CONTINUE                       = YES
