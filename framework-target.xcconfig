@@ -28,7 +28,7 @@ MACH_O_TYPE                 = mh_dylib
 WRAPPER_EXTENSION           = framework
 PUBLIC_HEADERS_FOLDER_PATH  = $(FULL_PRODUCT_NAME)/Versions/$(FRAMEWORK_VERSION)/Headers/
 
-// Host application must set OTHER_LD_FLAGS to:
+// Host application must set OTHER_LDFLAGS to:
 //      -rpath @executable_path/../Frameworks
 // or similar
 LD_DYLIB_INSTALL_NAME       = @rpath/$(EXECUTABLE_PATH)
