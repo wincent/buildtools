@@ -39,13 +39,6 @@ SEPARATE_STRIP                  = NO
 // may be redundant, but for completeness
 STRIP_STYLE                     = all
 
-// note that for some bundle targets, combining dead code stripping with normal
-// symbol stripping results in huge executables; in those cases you must use
-// only one or the other
-
-// inlined functions are hidden
-GCC_INLINES_ARE_PRIVATE_EXTERN  = YES
-
 KEEP_PRIVATE_EXTERNS            = NO
 
 // NDEBUG turns off C assert
