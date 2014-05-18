@@ -156,9 +156,6 @@ ARCHS                               = $(ARCHS_STANDARD_64_BIT)
 // new setting for Leopard-only builds (previously buildtools was used as far back as Panther)
 GCC_FAST_OBJC_DISPATCH              = YES
 
-// other Leopard-only settings
-GCC_ENABLE_OBJC_GC                  = required
-
 // default to using Cocoa/Cocoa.h as prefix header: override in specific cases (eg. Foundation tool targets)
 GCC_PREFIX_HEADER                   = $(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h
 
