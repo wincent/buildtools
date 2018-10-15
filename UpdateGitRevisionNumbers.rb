@@ -25,7 +25,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-require File.join(File.dirname(__FILE__), 'git').to_s
+require_relative './git'
 require 'pathname'
 
 target  = Pathname.new 'com.wincent.buildtools.gitrev.h'
