@@ -85,7 +85,7 @@ compare()
 # Use AppleScript to instruct Xcode to close a file, allowing us to modify it.
 #
 # In older versions of Xcode, it complained if it detected external changes to an open file.
-# As of 2.4 it appears that it automatically detects changed files when it becomes active 
+# As of 2.4 it appears that it automatically detects changed files when it becomes active
 # (after switching apps). It complains only if the changes conflict with edits made from
 # inside Xcode.
 #
