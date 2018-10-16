@@ -100,6 +100,5 @@ project the relative paths are:
 AUTHOR
 
 Greg Hurrell
-http://wincent.com/                 (company website)
-http://colaiuta.net/                (personal weblog)
-http://wincent.com/a/contact/mail/  (contact page)
+greg@hurrell.net
+http://wincent.com/
