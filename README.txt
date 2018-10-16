@@ -46,15 +46,6 @@ which are used to record which version of buildtools was used to build the
 other product.
 
 
-DONATIONS
-
-These buildtools are provided free of charge under the terms of the BSD
-license. If they are useful to you please consider visiting the website and
-making a donation:
-
-  http://wincent.com/a/products/buildtools/
-
-
 INSTRUCTIONS FOR USE
 
 The purpose and operation of most of the scripts are self-explanatory. The
