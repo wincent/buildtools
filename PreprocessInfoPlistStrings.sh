@@ -31,7 +31,7 @@
 # Defaults
 #
 
-GLOT="wincent-strings-util"
+GLOT="$HOME/bin/wincent-strings-util"
 
 #
 # Functions
