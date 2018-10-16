@@ -2,7 +2,7 @@
 ## "header" file containing default settings
 ## buildtools help templates
 ##
-## Copyright 2006-2010 Wincent Colaiuta. All rights reserved.
+## Copyright 2006-present Greg Hurrell. All rights reserved.
 ##
 ## Redistribution and use in source and binary forms, with or without
 ## modification, are permitted provided that the following conditions are met:
@@ -52,6 +52,6 @@
 ## Example: 'Getting started with Hextrapolate' (page-specific override)
 #set $page_title = 'Application Help'
 
-#set $author        = 'Wincent Colaiuta'
+#set $author        = 'Greg Hurrell'
 #set $author_email  = 'win@wincent.com'
-#set $copyright     = 'Copyright 2007-2010 Wincent Coliauta'
+#set $copyright     = 'Copyright 2007-present Wincent Coliauta'

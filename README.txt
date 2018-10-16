@@ -99,7 +99,7 @@ project the relative paths are:
 
 AUTHOR
 
-Wincent Colaiuta
+Greg Hurrell
 http://wincent.com/                 (company website)
 http://colaiuta.net/                (personal weblog)
 http://wincent.com/a/contact/mail/  (contact page)
