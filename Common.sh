@@ -93,9 +93,9 @@ close()
 {
   builtin echo "Closing $1, if it is open"
   WO_LAST_PATH_COMPONENT=$(builtin echo "$1" | perl -p -e 's#.*/##')
-  
+
   # only execute if Xcode is actually running (may not be if building using xcodebuild)
-  builtin echo -e "                                                           \n\
+  builtin echo "                                                              \n\
                                                                               \n\
   tell application \"System Events\"                                          \n\
       if ((get name of the processes) contains \"Xcode\") then                \n\
