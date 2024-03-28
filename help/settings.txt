@@ -53,5 +53,5 @@
 #set $page_title = 'Application Help'
 
 #set $author        = 'Greg Hurrell'
-#set $author_email  = 'win@wincent.com'
-#set $copyright     = 'Copyright 2007-present Wincent Coliauta'
+#set $author_email  = 'greg@hurrell.net'
+#set $copyright     = 'Copyright 2007-present Greg Hurrell'

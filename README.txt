@@ -3,35 +3,29 @@ BUILDTOOLS INTRODUCTION
 The Wincent Buildtools (from here on referred to as "buildtools") is a
 collection of scripts, tools and configuration files used in the build
 processes of a number of Wincent products (for a full product listing see
-http://wincent.com/). buildtools is licensed under the simplified BSD
+https://wincent.dev/). buildtools is licensed under the simplified BSD
 license (see the file, LICENSE.txt).
 
 I maintain these tools as a separate package for two reasons: firstly, because
-they allow frequently-used tools and configuration information to be stored in
-a central location rather than replicated across projects, and secondly,
-because I wanted to release the source code to some software I was developing
-under the GPL (specifically, WOTest; see: http://test.wincent.com), so it made
-sense to release the toolset required to build the software under the same
-terms.
+they allow frequently-used tools and configuration information to be stored in a
+central location rather than replicated across projects, and secondly, because
+I wanted to release the source code to some software I was developing under the
+GPL (specifically, WOTest), so it made sense to release the toolset required to
+build the software under the same terms.
 
-There are two non-standard executables that some buildtools scripts depend on
-(they expect to find them in the PATH), "wincent-strings-util" and
-"wincent-icon-util". The former, Wincent Strings Utility, is a separate
-project, licensed under the GPL. More information can be obtained from the
-project website: http://strings.wincent.com/. The latter, Wincent Icon Utility,
-is also a separate project licensed under the GPL but there is no project
-website for it at the moment.
+There are two non-standard executables that some buildtools scripts depend
+on (they expect to find them in the PATH), "wincent-strings-util" and
+"wincent-icon-util". The former, Wincent Strings Utility, is a separate project,
+licensed under the GPL. More information can be obtained from the project
+website. The latter, Wincent Icon Utility, is also a separate project licensed
+under the GPL but there is no project website for it at the moment.
 
 
 SOURCE CODE REPOSITORY
 
 The official buildtools Git repository can be cloned using:
 
-  git clone git://git.wincent.com/buildtools.git
-
-A web-based repository browser can be explored at:
-
-  http://git.wincent.com/buildtools.git
+  git clone git://git.wincent.dev/buildtools.git
 
 At the time of writing, there are three branches in the repository:
 
@@ -92,4 +86,4 @@ AUTHOR
 
 Greg Hurrell
 greg@hurrell.net
-http://wincent.com/
+https://wincent.dev/
